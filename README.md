@@ -1,0 +1,1 @@
+Tuya integration for HomeAssistant
