@@ -1,0 +1,249 @@
+{
+  "state": {
+    "tuya__basic_anti_flickr": {
+      "0": "Disabled",
+      "1": "50 Hz",
+      "2": "60 Hz"
+    },
+    "tuya__basic_nightvision": {
+      "0": "Automatic",
+      "1": "[%key:common::state::off%]",
+      "2": "[%key:common::state::on%]"
+    },
+    "tuya__decibel_sensitivity": {
+      "0": "Low sensitivity",
+      "1": "High sensitivity"
+    },
+    "tuya__ipc_work_mode": {
+      "0": "Low power mode",
+      "1": "Continuous working mode"
+    },
+    "tuya__led_type": {
+      "halogen": "Halogen",
+      "incandescent": "Incandescent",
+      "led": "LED"
+    },
+    "tuya__light_mode": {
+      "none": "[%key:common::state::off%]",
+      "pos": "Indicate switch location",
+      "relay": "Indicate switch on/off state"
+    },
+    "tuya__motion_sensitivity": {
+      "0": "Low sensitivity",
+      "1": "Medium sensitivity",
+      "2": "High sensitivity"
+    },
+    "tuya__record_mode": {
+      "1": "Record events only",
+      "2": "Continuous recording"
+    },
+    "tuya__relay_status": {
+      "last": "Remember last state",
+      "memory": "Remember last state",
+      "off": "[%key:common::state::off%]",
+      "on": "[%key:common::state::on%]",
+      "power_off": "[%key:common::state::off%]",
+      "power_on": "[%key:common::state::on%]"
+    },
+    "tuya__fingerbot_mode": {
+      "click": "Push",
+      "switch": "Switch"
+    },
+    "tuya__vacuum_cistern": {
+        "low": "Low",
+        "middle": "Middle",
+        "high": "High",
+        "closed": "Closed"
+    },
+    "tuya__vacuum_collection": {
+        "small": "Small",
+        "middle": "Middle",
+        "large": "Large"
+    },
+    "tuya__vacuum_mode": {
+        "standby": "Standby",
+        "random": "Random",
+        "smart": "Smart",
+        "wall_follow": "Follow Wall",
+        "mop": "Mop",
+        "spiral": "Spiral",
+        "left_spiral": "Spiral Left",
+        "right_spiral": "Spiral Right",
+        "bow": "Bow",
+        "left_bow": "Bow Left",
+        "right_bow": "Bow Right",
+        "partial_bow": "Bow Partially",
+        "chargego": "Return to dock",
+        "single": "Single",
+        "zone": "Zone",
+        "pose": "Pose",
+        "point": "Point",
+        "part": "Part",
+        "pick_zone": "Pick Zone"
+    },
+    "tuya__fan_angle": {
+        "30": "30°",
+        "60": "60°",
+        "90": "90°"
+    },
+    "tuya__curtain_mode": {
+        "morning": "Morning",
+        "night": "Night"
+    },
+    "tuya__curtain_motor_mode": {
+        "forward": "Forward",
+        "back": "Back"
+    },
+    "tuya__countdown": {
+        "cancel": "Cancel",
+        "1h": "1 hour",
+        "2h": "2 hours",
+        "3h": "3 hours",
+        "4h": "4 hours",
+        "5h": "5 hours",
+        "6h": "6 hours"
+    },
+    "tuya__humidifier_spray_mode": {
+        "auto": "Auto",
+        "health": "Health",
+        "sleep": "Sleep",
+        "humidity": "Humidity",
+        "work": "Work"
+    },
+    "tuya__humidifier_level": {
+        "level_1": "Level 1",
+        "level_2": "Level 2",
+        "level_3": "Level 3",
+        "level_4": "Level 4",
+        "level_5": "Level 5",
+        "level_6": "Level 6",
+        "level_7": "Level 7",
+        "level_8": "Level 8",
+        "level_9": "Level 9",
+        "level_10": "Level 10"
+    },
+    "tuya__humidifier_moodlighting": {
+        "1": "Mood 1",
+        "2": "Mood 2",
+        "3": "Mood 3",
+        "4": "Mood 4",
+        "5": "Mood 5"
+    },
+    "tuya__language": {
+        "chinese_simplified":"Chinese Simplified",
+        "english":"English",
+        "japanese":"Japanese",
+        "german":"German",
+        "spanish":"Spanish",
+        "latin":"Latin",
+        "french":"French",
+        "russian":"Russian",
+        "italian":"Italian",
+        "chinese_traditional":"Chinese Traditional",
+        "korean":"Korean",
+        "portuguese":"Portuguese"
+    },
+    "tuya__lock_doorbell_song": {
+        "ding_0":"Song 1",
+        "ding_1":"Song 2",
+        "ding_2":"Song 3",
+        "ding_3":"Song 4",
+        "ding_4":"Song 5",
+        "ding_5":"Song 6",
+        "ding_6":"Song 7",
+        "ding_7":"Song 8",
+        "ding_8":"Song 9",
+        "ding_9":"Song 10"
+    },
+    "tuya__lock_ringtone": {
+        "sound_1":"Sound 1",
+        "sound_2":"Sound 2",
+        "sound_3":"Sound 3",
+        "sound_4":"Sound 4",
+        "sound_5":"Sound 5",
+        "sound_6":"Sound 6"
+    },
+    "tuya__lock_sound_mode": {
+        "ringtone_0":"Ringtone 1",
+        "ringtone_1":"Ringtone 2",
+        "ringtone_2":"Ringtone 3",
+        "ringtone_3":"Ringtone 4",
+        "ringtone_4":"Ringtone 5",
+        "ringtone_5":"Ringtone 6"
+    },
+    "tuya__lock_volume": {
+        "mute": "Mute",
+        "low": "Low",
+        "normal": "Normal",
+        "high": "High"
+    },
+    "tuya__lock_alarm_volume": {
+        "mute": "Mute",
+        "normal": "Normal",
+        "loud": "Loud"
+    },
+    "tuya__lock_motor_torque": {
+        "torque_low":"Low",
+        "torque_middle":"Middle",
+        "torque_high":"High"
+    },
+    "tuya__lock_motor_direction": {
+        "clockwise":"Clockwise",
+        "anti_clockwise":"Anti Clockwise"
+    },
+    "tuya__lock_unlock_switch": {
+        "combination":"Combination",
+        "single_unlock":"Single Unlock",
+        "finger_password":"Finger and Password",
+        "finger_card":"Finger and Card",
+        "finger_face":"Finger and Face",
+        "password_card":"Password and Card",
+        "password_face":"Password and Face",
+        "card_face":"Card and Face"
+    },
+    "tuya__lock_door_unclosed_trigger": {
+        "5s":"5 seconds",
+        "10s":"10 seconds",
+        "15s":"15 seconds",
+        "20s":"20 seconds",
+        "25s":"25 seconds"
+    },
+    "tuya__lock_low_power_threshold": {
+        "5_percent":"5%",
+        "10_percent":"10%",
+        "15_percent":"15%",
+        "20_percent":"20%"
+    },
+    "tuya__lock_photo_mode": {
+        "close":"Close",
+        "power_save":"Power Save",
+        "standard":"Standard",
+        "security":"Security"
+    },
+    "tuya__lock_basic_nightvision": {
+        "0":"Level 1",
+        "1":"Level 2",
+        "2":"Level 3"
+    },
+    "tuya__lock_stay_alarm_mode": {
+        "close":"Close",
+        "normal":"Normal",
+        "high":"High",
+        "custom":"Custom"
+    },
+    "tuya__lock_stay_trigger_distance": {
+        "away_from":"Away From",
+        "close_to":"Close To",
+        "middle":"Middle"
+    },
+    "tuya__lock_stay_capture_mode": {
+        "mode_1":"Mode 1",
+        "mode_2":"Mode 2"
+    },
+    "tuya__lock_open_speed_state": {
+        "low":"Low",
+        "middle":"Middle",
+        "high":"High"
+    }
+  }
+}
