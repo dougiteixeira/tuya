@@ -162,7 +162,8 @@ class TuyaEntity(Entity):
     @property
     def available(self) -> bool:
         """Return if the device is available."""
-        return self.device.online
+        if self.device.category == "fdq":
+            return True
 
     @overload
     def find_dpcode(
