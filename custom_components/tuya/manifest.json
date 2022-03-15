@@ -1,10 +1,10 @@
 {
   "domain": "tuya",
   "name": "Tuya",
-  "version": "2022.3.0-10032022",
-  "documentation": "https://github.com/dougiteixeira/tuya",
+  "documentation": "https://www.home-assistant.io/integrations/tuya",
   "requirements": ["tuya-iot-py-sdk==0.6.6"],
   "dependencies": ["ffmpeg"],
+  "codeowners": ["@Tuya", "@zlinoliver", "@METISU", "@frenck"],
   "config_flow": true,
   "iot_class": "cloud_push",
   "dhcp": [
