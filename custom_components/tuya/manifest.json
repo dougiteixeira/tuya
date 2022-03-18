@@ -5,7 +5,7 @@
   "requirements": ["tuya-iot-py-sdk==0.6.6"],
   "dependencies": ["ffmpeg"] ,
   "codeowners": ["@Tuya", "@zlinoliver", "@METISU", "@frenck"],
-  "version": "14032022.005",
+  "version": "18032022.001",
   "config_flow": true,
   "iot_class": "cloud_push",
   "dhcp": [
