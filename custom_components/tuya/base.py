@@ -162,6 +162,9 @@ class TuyaEntity(Entity):
     @property
     def available(self) -> bool:
         """Return if the device is available."""
+        if self.device.category == "fdq":
+            return True
+
         return self.device.online
 
     @overload
