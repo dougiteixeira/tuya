@@ -716,6 +716,15 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
             entity_category=EntityCategory.CONFIG,
         ),
     ),
+    # Smart Star Projector
+    # Not documented
+    "xktyd": (
+        SwitchEntityDescription(
+            key=DPCode.FAN_SWITCH,
+            name="Motion",
+            icon="mdi:rotate-right",
+        ),
+    ),
 }
 
 # Socket (duplicate of `pc`)

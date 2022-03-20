@@ -319,17 +319,17 @@ LIGHTS: dict[str, tuple[TuyaLightEntityDescription, ...]] = {
     "xktyd": (
         TuyaLightEntityDescription(
             key=DPCode.SWITCH_LED,
-            color_mode=DPCode.STAR_WORK_MODE,
-            name="Projector Light White",
+            name="Projector",
         ),
         TuyaLightEntityDescription(
             key=DPCode.COLOUR_SWITCH,
-            name="Projector Light Color",
+            color_mode=DPCode.STAR_WORK_MODE,
+            name="Galaxy",
         ),
         TuyaLightEntityDescription(
             key=DPCode.LASER_SWITCH,
             brightness=DPCode.LASER_BRIGHT,
-            name="Projector Laser",
+            name="Stars",
         ),
     ),
 }
