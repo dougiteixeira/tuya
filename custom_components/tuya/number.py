@@ -288,6 +288,16 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
             icon="mdi:timer-cog-outline",
         ),
     ),
+    # Smart Star Projector
+    # Not documented
+    "xktyd": (
+        NumberEntityDescription(
+            key=DPCode.FAN_SPEED,
+            name="Speed",
+            icon="mdi:star-cog-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+    ),
 }
 
 # Lock (duplicate of 'ms')

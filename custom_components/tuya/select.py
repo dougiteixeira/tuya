@@ -493,6 +493,16 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
             icon="mdi:music-box-multiple-outline",
         ),
     ),
+    # Smart Star Projector
+    # Not documented
+    "xktyd": (
+        SelectEntityDescription(
+            key=DPCode.STAR_WORK_MODE,
+            name="Mode",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:star-box-multiple-outline",
+        ),
+    ),
 }
 
 # Socket (duplicate of `kg`)
