@@ -14,29 +14,18 @@ from homeassistant.const import (
     CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER,
     CONCENTRATION_PARTS_PER_BILLION,
     CONCENTRATION_PARTS_PER_MILLION,
-    ELECTRIC_CURRENT_AMPERE,
-    ELECTRIC_CURRENT_MILLIAMPERE,
-    ELECTRIC_POTENTIAL_MILLIVOLT,
-    ELECTRIC_POTENTIAL_VOLT,
-    ENERGY_KILO_WATT_HOUR,
-    ENERGY_WATT_HOUR,
     LIGHT_LUX,
     PERCENTAGE,
-    POWER_KILO_WATT,
-    POWER_WATT,
-    PRESSURE_BAR,
-    PRESSURE_HPA,
-    PRESSURE_INHG,
-    PRESSURE_MBAR,
-    PRESSURE_PA,
-    PRESSURE_PSI,
     SIGNAL_STRENGTH_DECIBELS,
     SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
-    VOLUME_CUBIC_FEET,
-    VOLUME_CUBIC_METERS,
     Platform,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
+    UnitOfEnergy,
+    UnitOfPower,
+    UnitOfPressure,
+    UnitOfTemperature,
+    UnitOfVolume,
 )
 
 DOMAIN = "tuya"
@@ -82,57 +71,6 @@ PLATFORMS = [
     Platform.SWITCH,
     Platform.VACUUM,
 ]
-
-
-class TuyaDeviceClass(StrEnum):
-    """Tuya specific device classes, used for translations."""
-
-    AIR_QUALITY = "tuya__air_quality"
-    ALARM_VOLUME = "tuya__alarm_volume"
-    CURTAIN_MODE = "tuya__curtain_mode"
-    CURTAIN_MOTOR_MODE = "tuya__curtain_motor_mode"
-    BASIC_ANTI_FLICKR = "tuya__basic_anti_flickr"
-    BASIC_NIGHTVISION = "tuya__basic_nightvision"
-    BATTERY_STATE = "tuya__battery_state"
-    COUNTDOWN = "tuya__countdown"
-    DECIBEL_SENSITIVITY = "tuya__decibel_sensitivity"
-    LOCK_DOOR_STATUS = "tuya__lock_status"
-    FAN_ANGLE = "tuya__fan_angle"
-    FINGERBOT_MODE = "tuya__fingerbot_mode"
-    HUMIDIFIER_SPRAY_MODE = "tuya__humidifier_spray_mode"
-    HUMIDIFIER_LEVEL = "tuya__humidifier_level"
-    HUMIDIFIER_MOODLIGHTING = "tuya__humidifier_moodlighting"
-    IPC_WORK_MODE = "tuya__ipc_work_mode"
-    LANGUAGE = "tuya__language"
-    LED_TYPE = "tuya__led_type"
-    LIGHT_MODE = "tuya__light_mode"
-    LOCK_ALARM = "tuya__lock_alarm"
-    LOCK_ALARM_VOLUME = "tuya__lock_alarm_volume"
-    LOCK_ANTILOCK = "tuya__lock_antilock"
-    LOCK_DOORBEL_SONG = "tuya__lock_doorbell_song"
-    LOCK_DOOR_UNCLOSED_TRIGGER = "tuya__lock_door_unclosed_trigger"
-    LOCK_INSURANCE = "tuya__lock_insurance"
-    LOCK_LOW_POWER = "tuya__lock_low_power_threshold"
-    LOCK_MOTOR_TORQUE = "tuya__lock_motor_torque"
-    LOCK_MOTOR_DIRECTION = "tuya__lock_motor_direction"
-    LOCK_NIGHTVISION = "tuya__lock_basic_nightvision"
-    LOCK_OPEN_SPEED = "tuya__lock_open_speed_state"
-    LOCK_PHOTO_MODE = "tuya__lock_photo_mode"
-    LOCK_RINGTONE = "tuya__lock_ringtone"
-    LOCK_SOUND_MODE = "tuya__lock_sound_mode"
-    LOCK_STAY_ALARM_MODE = "tuya__lock_stay_alarm_mode"
-    LOCK_STAY_TRIGGER_DISTANCE = "tuya__lock_stay_trigger_distance"
-    LOCK_STAY_CAPTURE_MODE = "tuya__lock_stay_capture_mode"
-    LOCK_UNLOCK_SWITCH = "tuya__lock_unlock_switch"
-    LOCK_VOLUME = "tuya__lock_doorbell_volume"
-    MOTION_SENSITIVITY = "tuya__motion_sensitivity"
-    RECORD_MODE = "tuya__record_mode"
-    RELAY_STATUS = "tuya__relay_status"
-    STATUS = "tuya__status"
-    SOUND_MODE = "tuya__sound_mode"
-    VACUUM_CISTERN = "tuya__vacuum_cistern"
-    VACUUM_COLLECTION = "tuya__vacuum_collection"
-    VACUUM_MODE = "tuya__vacuum_mode"
 
 
 class WorkMode(StrEnum):
@@ -214,6 +152,8 @@ class DPCode(StrEnum):
     CLEAN_AREA = "clean_area"
     CLEAN_TIME = "clean_time"
     CLICK_SUSTAIN_TIME = "click_sustain_time"
+    CLOUD_RECIPE_NUMBER = "cloud_recipe_number"
+    CLOSED_OPENED_KIT = "closed_opened_kit"
     CO_STATE = "co_state"
     CO_STATUS = "co_status"
     CO_VALUE = "co_value"
@@ -224,7 +164,8 @@ class DPCode(StrEnum):
     COLOUR_DATA = "colour_data"  # Colored light mode
     COLOUR_DATA_HSV = "colour_data_hsv"  # Colored light mode
     COLOUR_DATA_V2 = "colour_data_v2"  # Colored light mode
-    COLOUR_SWITCH = "colour_switch"
+    COOK_TEMPERATURE = "cook_temperature"
+    COOK_TIME = "cook_time"
     CONCENTRATION_SET = "concentration_set"  # Concentration setting
     CONTROL = "control"
     CONTROL_2 = "control_2"
@@ -241,7 +182,9 @@ class DPCode(StrEnum):
     CUR_VOLTAGE = "cur_voltage"  # Actual voltage
     DECIBEL_SENSITIVITY = "decibel_sensitivity"
     DECIBEL_SWITCH = "decibel_switch"
+    DEHUMIDITY_SET_ENUM = "dehumidify_set_enum"
     DEHUMIDITY_SET_VALUE = "dehumidify_set_value"
+    DISINFECTION = "disinfection"
     DO_NOT_DISTURB = "do_not_disturb"
     DOOR_OPENED = "door_opened"
     DOOR_UNCLOSED_TRIGGER = "door_unclosed_trigger"
@@ -264,16 +207,15 @@ class DPCode(StrEnum):
     FAN_SPEED = "fan_speed"
     FAN_SPEED_ENUM = "fan_speed_enum"  # Speed mode
     FAN_SPEED_PERCENT = "fan_speed_percent"  # Stepless speed
+    FAN_SWITCH = "fan_switch"
     FAN_MODE = "fan_mode"
     FAN_VERTICAL = "fan_vertical"  # Vertical swing flap angle
-    FAN_SWITCH = "fan_switch"
     FAR_DETECTION = "far_detection"
     FAULT = "fault"
     FEED_REPORT = "feed_report"
     FEED_STATE = "feed_state"
     FILTER = "filter"
     FILTER_LIFE = "filter"
-    FINDDEV = "FINDDEV"
     FILTER_RESET = "filter_reset"  # Filter (cartridge) reset
     FLOODLIGHT_LIGHTNESS = "floodlight_lightness"
     FLOODLIGHT_SWITCH = "floodlight_switch"
@@ -286,14 +228,13 @@ class DPCode(StrEnum):
     HUMIDIFIER = "humidifier"  # Humidification
     HUMIDITY = "humidity"  # Humidity
     HUMIDITY_CURRENT = "humidity_current"  # Current humidity
+    HUMIDITY_INDOOR = "humidity_indoor"  # Indoor humidity
     HUMIDITY_SET = "humidity_set"  # Humidity setting
     HUMIDITY_VALUE = "humidity_value"  # Humidity
     INSURANCE_STATUS = "insurance_status"
     IPC_WORK_MODE = "ipc_work_mode"
     KEY_TONE = "key_tone"
     LANGUAGE = "language"
-    LASER_BRIGHT = "laser_bright"
-    LASER_SWITCH = "laser_switch"
     LED_TYPE_1 = "led_type_1"
     LED_TYPE_2 = "led_type_2"
     LED_TYPE_3 = "led_type_3"
@@ -356,6 +297,7 @@ class DPCode(StrEnum):
     RECORD_MODE = "record_mode"
     RECORD_SWITCH = "record_switch"  # Recording switch
     RELAY_STATUS = "relay_status"
+    REMAIN_TIME = "remain_time"
     RESET_DUSTER_CLOTH = "reset_duster_cloth"
     RESET_EDGE_BRUSH = "reset_edge_brush"
     RESET_FILTER = "reset_filter"
@@ -378,14 +320,13 @@ class DPCode(StrEnum):
     SMOKE_SENSOR_STATE = "smoke_sensor_state"
     SMOKE_SENSOR_STATUS = "smoke_sensor_status"
     SMOKE_SENSOR_VALUE = "smoke_sensor_value"
+    SOUND_MODE = "sound_mode"
     SOS = "sos"  # Emergency State
     SOS_STATE = "sos_state"  # Emergency mode
-    SOUND_MODE = "sound_mode"
     SPECIAL_CONTROL = "special_control"
     SPECIAL_FUNCTION = "special_function"
     SPEED = "speed"  # Speed level
     SPRAY_MODE = "spray_mode"  # Spraying mode
-    STAR_WORK_MODE = "star_work_mode"
     START = "start"  # Start
     STATUS = "status"
     STAY_ALARM_MODE = "stay_alarm_mode"
@@ -433,6 +374,7 @@ class DPCode(StrEnum):
     TEMP_CONTROLLER = "temp_controller"
     TEMP_CURRENT = "temp_current"  # Current temperature in °C
     TEMP_CURRENT_F = "temp_current_f"  # Current temperature in °F
+    TEMP_INDOOR = "temp_indoor"  # Indoor temperature in °C
     TEMP_SET = "temp_set"  # Set the temperature in °C
     TEMP_SET_F = "temp_set_f"  # Set the temperature in °F
     TEMP_UNIT_CONVERT = "temp_unit_convert"  # Temperature unit switching
@@ -482,6 +424,7 @@ class DPCode(StrEnum):
     VOLUME_SET = "volume_set"
     WARM = "warm"  # Heat preservation
     WARM_TIME = "warm_time"  # Heat preservation time
+    WATER = "water"
     WATER_RESET = "water_reset"  # Resetting of water usage days
     WATER_SET = "water_set"  # Water level
     WATERSENSOR_STATE = "watersensor_state"
@@ -525,7 +468,7 @@ UNITS = (
     ),
     UnitOfMeasurement(
         unit=PERCENTAGE,
-        aliases={"pct", "percent"},
+        aliases={"pct", "percent", "% RH"},
         device_classes={
             SensorDeviceClass.BATTERY,
             SensorDeviceClass.HUMIDITY,
@@ -549,45 +492,40 @@ UNITS = (
         conversion_fn=lambda x: x / 1000,
     ),
     UnitOfMeasurement(
-        unit=ELECTRIC_CURRENT_AMPERE,
+        unit=UnitOfElectricCurrent.AMPERE,
         aliases={"a", "ampere"},
         device_classes={SensorDeviceClass.CURRENT},
     ),
     UnitOfMeasurement(
-        unit=ELECTRIC_CURRENT_MILLIAMPERE,
+        unit=UnitOfElectricCurrent.MILLIAMPERE,
         aliases={"ma", "milliampere"},
         device_classes={SensorDeviceClass.CURRENT},
-        conversion_unit=ELECTRIC_CURRENT_AMPERE,
+        conversion_unit=UnitOfElectricCurrent.AMPERE,
         conversion_fn=lambda x: x / 1000,
     ),
     UnitOfMeasurement(
-        unit=ENERGY_WATT_HOUR,
+        unit=UnitOfEnergy.WATT_HOUR,
         aliases={"wh", "watthour"},
         device_classes={SensorDeviceClass.ENERGY},
     ),
     UnitOfMeasurement(
-        unit=ENERGY_KILO_WATT_HOUR,
+        unit=UnitOfEnergy.KILO_WATT_HOUR,
         aliases={"kwh", "kilowatt-hour", "kW·h"},
         device_classes={SensorDeviceClass.ENERGY},
     ),
     UnitOfMeasurement(
-        unit=VOLUME_CUBIC_FEET,
+        unit=UnitOfVolume.CUBIC_FEET,
         aliases={"ft3"},
         device_classes={SensorDeviceClass.GAS},
     ),
     UnitOfMeasurement(
-        unit=VOLUME_CUBIC_METERS,
+        unit=UnitOfVolume.CUBIC_METERS,
         aliases={"m3"},
         device_classes={SensorDeviceClass.GAS},
     ),
     UnitOfMeasurement(
         unit=LIGHT_LUX,
         aliases={"lux"},
-        device_classes={SensorDeviceClass.ILLUMINANCE},
-    ),
-    UnitOfMeasurement(
-        unit="lm",
-        aliases={"lum", "lumen"},
         device_classes={SensorDeviceClass.ILLUMINANCE},
     ),
     UnitOfMeasurement(
@@ -623,40 +561,40 @@ UNITS = (
         conversion_fn=lambda x: x * 1000,
     ),
     UnitOfMeasurement(
-        unit=POWER_WATT,
+        unit=UnitOfPower.WATT,
         aliases={"watt"},
         device_classes={SensorDeviceClass.POWER},
     ),
     UnitOfMeasurement(
-        unit=POWER_KILO_WATT,
+        unit=UnitOfPower.KILO_WATT,
         aliases={"kilowatt"},
         device_classes={SensorDeviceClass.POWER},
     ),
     UnitOfMeasurement(
-        unit=PRESSURE_BAR,
+        unit=UnitOfPressure.BAR,
         device_classes={SensorDeviceClass.PRESSURE},
     ),
     UnitOfMeasurement(
-        unit=PRESSURE_MBAR,
+        unit=UnitOfPressure.MBAR,
         aliases={"millibar"},
         device_classes={SensorDeviceClass.PRESSURE},
     ),
     UnitOfMeasurement(
-        unit=PRESSURE_HPA,
+        unit=UnitOfPressure.HPA,
         aliases={"hpa", "hectopascal"},
         device_classes={SensorDeviceClass.PRESSURE},
     ),
     UnitOfMeasurement(
-        unit=PRESSURE_INHG,
+        unit=UnitOfPressure.INHG,
         aliases={"inhg"},
         device_classes={SensorDeviceClass.PRESSURE},
     ),
     UnitOfMeasurement(
-        unit=PRESSURE_PSI,
+        unit=UnitOfPressure.PSI,
         device_classes={SensorDeviceClass.PRESSURE},
     ),
     UnitOfMeasurement(
-        unit=PRESSURE_PA,
+        unit=UnitOfPressure.PA,
         device_classes={SensorDeviceClass.PRESSURE},
     ),
     UnitOfMeasurement(
@@ -670,25 +608,25 @@ UNITS = (
         device_classes={SensorDeviceClass.SIGNAL_STRENGTH},
     ),
     UnitOfMeasurement(
-        unit=TEMP_CELSIUS,
-        aliases={"°c", "c", "celsius"},
+        unit=UnitOfTemperature.CELSIUS,
+        aliases={"°c", "c", "celsius", "℃"},
         device_classes={SensorDeviceClass.TEMPERATURE},
     ),
     UnitOfMeasurement(
-        unit=TEMP_FAHRENHEIT,
+        unit=UnitOfTemperature.FAHRENHEIT,
         aliases={"°f", "f", "fahrenheit"},
         device_classes={SensorDeviceClass.TEMPERATURE},
     ),
     UnitOfMeasurement(
-        unit=ELECTRIC_POTENTIAL_VOLT,
+        unit=UnitOfElectricPotential.VOLT,
         aliases={"volt"},
         device_classes={SensorDeviceClass.VOLTAGE},
     ),
     UnitOfMeasurement(
-        unit=ELECTRIC_POTENTIAL_MILLIVOLT,
+        unit=UnitOfElectricPotential.MILLIVOLT,
         aliases={"mv", "millivolt"},
         device_classes={SensorDeviceClass.VOLTAGE},
-        conversion_unit=ELECTRIC_POTENTIAL_VOLT,
+        conversion_unit=UnitOfElectricPotential.VOLT,
         conversion_fn=lambda x: x / 1000,
     ),
 )

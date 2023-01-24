@@ -38,6 +38,20 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
             entity_category=EntityCategory.CONFIG,
         ),
     ),
+    # EasyBaby
+    # Undocumented, might have a wider use
+    "cn": (
+        SwitchEntityDescription(
+            key=DPCode.DISINFECTION,
+            name="Disinfection",
+            icon="mdi:bacteria",
+        ),
+        SwitchEntityDescription(
+            key=DPCode.WATER,
+            name="Water",
+            icon="mdi:water",
+        ),
+    ),
     # Smart Pet Feeder
     # https://developer.tuya.com/en/docs/iot/categorycwwsq?id=Kaiuz2b6vydld
     "cwwsq": (
@@ -73,6 +87,12 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
             icon="mdi:water-sync",
             entity_category=EntityCategory.CONFIG,
         ),
+        SwitchEntityDescription(
+            key=DPCode.UV,
+            name="UV Sterilization",
+            icon="mdi:lightbulb",
+            entity_category=EntityCategory.CONFIG,
+        ),
     ),
     # Light
     # https://developer.tuya.com/en/docs/iot/f?id=K9i5ql3v98hn3
@@ -96,6 +116,59 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
         SwitchEntityDescription(
             key=DPCode.SWITCH,
             name="Switch",
+        ),
+    ),
+    # Wake Up Light II
+    # Not documented
+    "hxd": (
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_1,
+            name="Radio",
+            icon="mdi:radio",
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_2,
+            name="Alarm 1",
+            icon="mdi:alarm",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_3,
+            name="Alarm 2",
+            icon="mdi:alarm",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_4,
+            name="Alarm 3",
+            icon="mdi:alarm",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_5,
+            name="Alarm 4",
+            icon="mdi:alarm",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_6,
+            name="Sleep Aid",
+            icon="mdi:power-sleep",
+        ),
+    ),
+    # Two-way temperature and humidity switch
+    # "MOES Temperature and Humidity Smart Switch Module MS-103"
+    # Documentation not found
+    "wkcz": (
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_1,
+            name="Switch 1",
+            device_class=SwitchDeviceClass.OUTLET,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_2,
+            name="Switch 2",
+            device_class=SwitchDeviceClass.OUTLET,
         ),
     ),
     # Switch
@@ -228,6 +301,123 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
             key=DPCode.LOCK,
             name="Child Lock",
             icon="mdi:account-lock",
+            entity_category=EntityCategory.CONFIG,
+        ),
+    ),
+    # Smart Lock
+    # https://developer.tuya.com/en/docs/iot/f?id=Kb0o2vbzuzl81
+    "ms": (
+        SwitchEntityDescription(
+            key=DPCode.AUTOMATIC_LOCK,
+            name="Auto-lock",
+            icon="mdi:lock-clock",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.ARMING_SWITCH,
+            name="Arming",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.DO_NOT_DISTURB,
+            name="Do not disturb",
+            icon="mdi:minus-circle-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.DORMANT_SWITCH,
+            name="Hibernation",
+            icon="mdi:sleep",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.FREE_VERIFY,
+            name="Verification-free",
+            icon="mdi:shield-lock-open-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SWITCH_ANTILOCK_LIMIT,
+            name="Double locking limit",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.ALARM_SWITCH,
+            name="Disconnection alert",
+            icon="mdi:close-network-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.LOCK_FUNCTION_SWITCH,
+            name="Lock function",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.ENFORCE_LOCK_UP,
+            name="Mandatory double locking",
+            icon="mdi:lock-check",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.CALLPHONE,
+            name="Phone call",
+            icon="mdi:phone-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.NORMAL_OPEN_SWITCH,
+            name="Normally open",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.SPECIAL_CONTROL,
+            name="Special control",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.BASIC_OSD,
+            name="Camera time watermark",
+            icon="mdi:watermark",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.BASIC_PRIVATE,
+            name="Camera privacy mode",
+            icon="mdi:camera-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.WIRELESS_AWAKE,
+            name="Wake-up status",
+            icon="mdi:list-status",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.REMOTE_RESULT,
+            name="Password-free unlocking feedback",
+            icon="mdi:lock-alert-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.UNLOCK_SPECIAL,
+            name="Unlock with special secret key",
+            icon="mdi:account-key-outline",
+            entity_category=EntityCategory.CONFIG,
+        ),
+    ),
+    # Sous Vide Cooker
+    # https://developer.tuya.com/en/docs/iot/categorymzj?id=Kaiuz2vy130ux
+    "mzj": (
+        SwitchEntityDescription(
+            key=DPCode.SWITCH,
+            name="Switch",
+            icon="mdi:power",
+            entity_category=EntityCategory.CONFIG,
+        ),
+        SwitchEntityDescription(
+            key=DPCode.START,
+            name="Start",
+            icon="mdi:pot-steam",
             entity_category=EntityCategory.CONFIG,
         ),
     ),
@@ -484,6 +674,15 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
             entity_category=EntityCategory.CONFIG,
         ),
     ),
+    # SIREN: Siren (switch) with Temperature and humidity sensor
+    # https://developer.tuya.com/en/docs/iot/f?id=Kavck4sr3o5ek
+    "wsdcg": (
+        SwitchEntityDescription(
+            key=DPCode.SWITCH,
+            name="Switch",
+            device_class=SwitchDeviceClass.OUTLET,
+        ),
+    ),
     # Ceiling Light
     # https://developer.tuya.com/en/docs/iot/ceiling-light?id=Kaiuz03xxfc4r
     "xdd": (
@@ -597,132 +796,6 @@ SWITCHES: dict[str, tuple[SwitchEntityDescription, ...]] = {
             name="Sterilization",
             icon="mdi:minus-circle-outline",
             entity_category=EntityCategory.CONFIG,
-        ),
-    ),
-    # Smart Lock
-    # https://developer.tuya.com/en/docs/iot/f?id=Kb0o2vbzuzl81
-    "ms": (
-        SwitchEntityDescription(
-            key=DPCode.AUTOMATIC_LOCK,
-            name="Automatic Latch",
-            icon="mdi:lock-clock",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.ARMING_SWITCH,
-            name="Arming",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.DO_NOT_DISTURB,
-            name="Do Not Disturb",
-            icon="mdi:minus-circle-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.DORMANT_SWITCH,
-            name="Hibernation",
-            icon="mdi:sleep",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.FREE_VERIFY,
-            name="Verification-free",
-            icon="mdi:shield-lock-open-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.SWITCH_ANTILOCK_LIMIT,
-            name="Double Locking Limit",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.ALARM_SWITCH,
-            name="Disconnection Alert",
-            icon="mdi:close-network-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.LOCK_FUNCTION_SWITCH,
-            name="Lock Function",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.ENFORCE_LOCK_UP,
-            name="Mandatory Double Locking",
-            icon="mdi:lock-check",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.CALLPHONE,
-            name="Phone Call",
-            icon="mdi:phone-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.NORMAL_OPEN_SWITCH,
-            name="Normally Open",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.SPECIAL_CONTROL,
-            name="Special Control",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.BASIC_OSD,
-            name="Camera Time Watermark",
-            icon="mdi:watermark",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.BASIC_PRIVATE,
-            name="Camera Privacy Mode",
-            icon="mdi:camera-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.WIRELESS_AWAKE,
-            name="Wake-up Status",
-            icon="mdi:list-status",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.REMOTE_RESULT,
-            name="Password-free Unlocking Feedback",
-            icon="mdi:lock-alert-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.UNLOCK_SPECIAL,
-            name="Unlock with Special Secret Key",
-            icon="mdi:account-key-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-    ),
-    # Smart Finder
-    # Note: Not documented
-    "fdq": (
-        SwitchEntityDescription(
-            key=DPCode.CALLPHONE,
-            name="Callphone",
-            icon="mdi:phone",
-            entity_category=EntityCategory.CONFIG,
-        ),
-        SwitchEntityDescription(
-            key=DPCode.ALARM_SWITCH,
-            name="Alarm",
-            icon="mdi:alarm-light-outline",
-            entity_category=EntityCategory.CONFIG,
-        ),
-    ),
-    # Smart Star Projector
-    # Not documented
-    "xktyd": (
-        SwitchEntityDescription(
-            key=DPCode.FAN_SWITCH,
-            name="Motion",
-            icon="mdi:rotate-right",
         ),
     ),
 }
