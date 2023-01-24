@@ -12,23 +12,34 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from . import HomeAssistantTuyaData
 from .base import TuyaEntity
-from .const import DOMAIN, TUYA_DISCOVERY_NEW, DPCode, DPType, TuyaDeviceClass
+from .const import DOMAIN, TUYA_DISCOVERY_NEW, DPCode, DPType
 
 # Commonly used, that are re-used in the select down below.
 LANGUAGE_SELECT: tuple[SelectEntityDescription, ...] = (
     SelectEntityDescription(
         key=DPCode.LANGUAGE,
         name="Language",
-        device_class=TuyaDeviceClass.LANGUAGE,
         entity_category=EntityCategory.CONFIG,
         icon="mdi:translate",
+        entity_registry_enabled_default=False,
+        translation_key="language",
     ),
 )
+
 
 # All descriptions can be found here. Mostly the Enum data types in the
 # default instructions set of each category end up being a select.
 # https://developer.tuya.com/en/docs/iot/standarddescription?id=K9i5ql6waswzq
 SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
+    # Multi-functional Sensor
+    # https://developer.tuya.com/en/docs/iot/categorydgnbj?id=Kaiuz3yorvzg3
+    "dgnbj": (
+        SelectEntityDescription(
+            key=DPCode.ALARM_VOLUME,
+            name="Volume",
+            entity_category=EntityCategory.CONFIG,
+        ),
+    ),
     # Coffee maker
     # https://developer.tuya.com/en/docs/iot/categorykfj?id=Kaiuz2p12pc7f
     "kfj": (
@@ -59,23 +70,154 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "kg": (
         SelectEntityDescription(
             key=DPCode.RELAY_STATUS,
-            name="Power on Behavior",
-            device_class=TuyaDeviceClass.RELAY_STATUS,
+            name="Power on behavior",
             entity_category=EntityCategory.CONFIG,
+            translation_key="relay_status",
         ),
         SelectEntityDescription(
             key=DPCode.LIGHT_MODE,
-            name="Indicator Light Mode",
-            device_class=TuyaDeviceClass.LIGHT_MODE,
+            name="Indicator light mode",
             entity_category=EntityCategory.CONFIG,
+            translation_key="light_mode",
         ),
+    ),
+    # Smart Lock
+    # https://developer.tuya.com/en/docs/iot/f?id=Kb0o2vbzuzl81
+    "ms": (
+        SelectEntityDescription(
+            key=DPCode.ALARM_VOLUME,
+            name="Alert volume",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:volume-high",
+            translation_key="lock_alarm_volume",
+        ),
+        SelectEntityDescription(
+            key=DPCode.BASIC_NIGHTVISION,
+            name="Infrared (IR) night vision",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:weather-night",
+            translation_key="lock_basic_nightvision",
+        ),
+        SelectEntityDescription(
+            key=DPCode.BEEP_VOLUME,
+            name="Local voice volume",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:volume-high",
+            translation_key="lock_doorbell_volume",
+        ),
+        SelectEntityDescription(
+            key=DPCode.DOOR_UNCLOSED_TRIGGER,
+            name="Trigger time of unclosed",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:timer-cog-outline",
+            translation_key="lock_door_unclosed_trigger",
+        ),
+        SelectEntityDescription(
+            key=DPCode.DOORBELL_SONG,
+            name="Doorbell ringtone",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:music-box-multiple-outline",
+            translation_key="lock_doorbell_song",
+        ),
+        SelectEntityDescription(
+            key=DPCode.DOORBELL_VOLUME,
+            name="Doorbell volume",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:volume-high",
+            translation_key="lock_doorbell_volume",
+        ),
+        SelectEntityDescription(
+            key=DPCode.KEY_TONE,
+            name="Volume on keypress",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:music-box-multiple-outline",
+            translation_key="lock_doorbell_volume",
+        ),
+        SelectEntityDescription(
+            key=DPCode.LOCK_MOTOR_DIRECTION,
+            name="Rotation direction of motor",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:swap-horizontal",
+            translation_key="lock_motor_direction",
+        ),
+        SelectEntityDescription(
+            key=DPCode.LOW_POWER_THRESHOLD,
+            name="Low battery alert",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:battery-alert-variant-outline",
+            translation_key="lock_low_power_threshold",
+        ),
+        SelectEntityDescription(
+            key=DPCode.MOTOR_TORQUE,
+            name="Torque force of motor",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:hexagon-multiple-outline",
+            translation_key="lock_motor_torque",
+        ),
+        SelectEntityDescription(
+            key=DPCode.OPEN_SPEED_STATE,
+            name="Unlocking speed",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:speedometer",
+            translation_key="lock_open_speed_state",
+        ),
+        SelectEntityDescription(
+            key=DPCode.PHOTO_MODE,
+            name="Photo mode",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:image-multiple-outline",
+            translation_key="lock_photo_mode",
+        ),
+        SelectEntityDescription(
+            key=DPCode.RINGTONE,
+            name="Local ringtone",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:music-box-multiple-outline",
+            translation_key="lock_ringtone",
+        ),
+        SelectEntityDescription(
+            key=DPCode.SOUND_MODE,
+            name="Sound mode",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:music-box-multiple-outline",
+            translation_key="lock_sound_mode",
+        ),
+        SelectEntityDescription(
+            key=DPCode.STAY_ALARM_MODE,
+            name="Loitering alert mode",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:star-box-multiple-outline",
+            translation_key="lock_stay_alarm_mode",
+        ),
+        SelectEntityDescription(
+            key=DPCode.STAY_CAPTURE_MODE,
+            name="Loitering photo capture mode",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:image-multiple-outline",
+            translation_key="lock_stay_capture_mode",
+        ),
+        SelectEntityDescription(
+            key=DPCode.STAY_TRIGGER_DISTANCE,
+            name="Loitering sensing range",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:signal-distance-variant",
+            translation_key="lock_stay_trigger_distance",
+        ),
+        SelectEntityDescription(
+            key=DPCode.UNLOCK_SWITCH,
+            name="Unlock mode",
+            entity_category=EntityCategory.CONFIG,
+            icon="mdi:shield-lock-open-outline",
+            translation_key="lock_unlock_switch",
+        ),
+        *LANGUAGE_SELECT,
     ),
     # Heater
     # https://developer.tuya.com/en/docs/iot/categoryqn?id=Kaiuz18kih0sm
     "qn": (
         SelectEntityDescription(
             key=DPCode.LEVEL,
-            name="Temperature Level",
+            name="Temperature level",
             icon="mdi:thermometer-lines",
         ),
     ),
@@ -98,44 +240,44 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "sp": (
         SelectEntityDescription(
             key=DPCode.IPC_WORK_MODE,
-            name="IPC Mode",
-            device_class=TuyaDeviceClass.IPC_WORK_MODE,
+            name="IPC mode",
             entity_category=EntityCategory.CONFIG,
+            translation_key="ipc_work_mode",
         ),
         SelectEntityDescription(
             key=DPCode.DECIBEL_SENSITIVITY,
-            name="Sound Detection Sensitivity",
+            name="Sound detection densitivity",
             icon="mdi:volume-vibrate",
-            device_class=TuyaDeviceClass.DECIBEL_SENSITIVITY,
             entity_category=EntityCategory.CONFIG,
+            translation_key="decibel_sensitivity",
         ),
         SelectEntityDescription(
             key=DPCode.RECORD_MODE,
-            name="Record Mode",
+            name="Record mode",
             icon="mdi:record-rec",
-            device_class=TuyaDeviceClass.RECORD_MODE,
             entity_category=EntityCategory.CONFIG,
+            translation_key="record_mode",
         ),
         SelectEntityDescription(
             key=DPCode.BASIC_NIGHTVISION,
-            name="Night Vision",
+            name="Night vision",
             icon="mdi:theme-light-dark",
-            device_class=TuyaDeviceClass.BASIC_NIGHTVISION,
             entity_category=EntityCategory.CONFIG,
+            translation_key="basic_nightvision",
         ),
         SelectEntityDescription(
             key=DPCode.BASIC_ANTI_FLICKER,
             name="Anti-flicker",
             icon="mdi:image-outline",
-            device_class=TuyaDeviceClass.BASIC_ANTI_FLICKR,
             entity_category=EntityCategory.CONFIG,
+            translation_key="basic_anti_flicker",
         ),
         SelectEntityDescription(
             key=DPCode.MOTION_SENSITIVITY,
-            name="Motion Detection Sensitivity",
+            name="Motion detection sensitivity",
             icon="mdi:motion-sensor",
-            device_class=TuyaDeviceClass.MOTION_SENSITIVITY,
             entity_category=EntityCategory.CONFIG,
+            translation_key="motion_sensitivity",
         ),
     ),
     # IoT Switch?
@@ -143,15 +285,15 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "tdq": (
         SelectEntityDescription(
             key=DPCode.RELAY_STATUS,
-            name="Power on Behavior",
-            device_class=TuyaDeviceClass.RELAY_STATUS,
+            name="Power on behavior",
             entity_category=EntityCategory.CONFIG,
+            translation_key="relay_status",
         ),
         SelectEntityDescription(
             key=DPCode.LIGHT_MODE,
-            name="Indicator Light Mode",
-            device_class=TuyaDeviceClass.LIGHT_MODE,
+            name="Indicator light mode",
             entity_category=EntityCategory.CONFIG,
+            translation_key="light_mode",
         ),
     ),
     # Dimmer Switch
@@ -159,33 +301,33 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "tgkg": (
         SelectEntityDescription(
             key=DPCode.RELAY_STATUS,
-            name="Power on Behavior",
-            device_class=TuyaDeviceClass.RELAY_STATUS,
+            name="Power on behavior",
             entity_category=EntityCategory.CONFIG,
+            translation_key="relay_status",
         ),
         SelectEntityDescription(
             key=DPCode.LIGHT_MODE,
-            name="Indicator Light Mode",
-            device_class=TuyaDeviceClass.LIGHT_MODE,
+            name="Indicator light mode",
             entity_category=EntityCategory.CONFIG,
+            translation_key="light_mode",
         ),
         SelectEntityDescription(
             key=DPCode.LED_TYPE_1,
-            name="Light Source Type",
-            device_class=TuyaDeviceClass.LED_TYPE,
+            name="Light source type",
             entity_category=EntityCategory.CONFIG,
+            translation_key="led_type",
         ),
         SelectEntityDescription(
             key=DPCode.LED_TYPE_2,
-            name="Light 2 Source Type",
-            device_class=TuyaDeviceClass.LED_TYPE,
+            name="Light 2 source type",
             entity_category=EntityCategory.CONFIG,
+            translation_key="led_type",
         ),
         SelectEntityDescription(
             key=DPCode.LED_TYPE_3,
-            name="Light 3 Source Type",
-            device_class=TuyaDeviceClass.LED_TYPE,
+            name="Light 3 source type",
             entity_category=EntityCategory.CONFIG,
+            translation_key="led_type",
         ),
     ),
     # Dimmer
@@ -193,15 +335,15 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "tgq": (
         SelectEntityDescription(
             key=DPCode.LED_TYPE_1,
-            name="Light Source Type",
-            device_class=TuyaDeviceClass.LED_TYPE,
+            name="Light source type",
             entity_category=EntityCategory.CONFIG,
+            translation_key="led_type",
         ),
         SelectEntityDescription(
             key=DPCode.LED_TYPE_2,
-            name="Light 2 Source Type",
-            device_class=TuyaDeviceClass.LED_TYPE,
+            name="Light 2 source type",
             entity_category=EntityCategory.CONFIG,
+            translation_key="led_type",
         ),
     ),
     # Fingerbot
@@ -209,8 +351,8 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
         SelectEntityDescription(
             key=DPCode.MODE,
             name="Mode",
-            device_class=TuyaDeviceClass.FINGERBOT_MODE,
             entity_category=EntityCategory.CONFIG,
+            translation_key="fingerbot_mode",
         ),
     ),
     # Robot Vacuum
@@ -218,24 +360,24 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "sd": (
         SelectEntityDescription(
             key=DPCode.CISTERN,
-            name="Water Tank Adjustment",
+            name="Water tank adjustment",
             entity_category=EntityCategory.CONFIG,
-            device_class=TuyaDeviceClass.VACUUM_CISTERN,
             icon="mdi:water-opacity",
+            translation_key="vacuum_cistern",
         ),
         SelectEntityDescription(
             key=DPCode.COLLECTION_MODE,
-            name="Dust Collection Mode",
+            name="Dust collection mode",
             entity_category=EntityCategory.CONFIG,
-            device_class=TuyaDeviceClass.VACUUM_COLLECTION,
             icon="mdi:air-filter",
+            translation_key="vacuum_collection",
         ),
         SelectEntityDescription(
             key=DPCode.MODE,
             name="Mode",
             entity_category=EntityCategory.CONFIG,
-            device_class=TuyaDeviceClass.VACUUM_MODE,
             icon="mdi:layers-outline",
+            translation_key="vacuum_mode",
         ),
     ),
     # Fan
@@ -243,31 +385,31 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "fs": (
         SelectEntityDescription(
             key=DPCode.FAN_VERTICAL,
-            name="Vertical Swing Flap Angle",
-            device_class=TuyaDeviceClass.FAN_ANGLE,
+            name="Vertical swing flap angle",
             entity_category=EntityCategory.CONFIG,
             icon="mdi:format-vertical-align-center",
+            translation_key="fan_angle",
         ),
         SelectEntityDescription(
             key=DPCode.FAN_HORIZONTAL,
-            name="Horizontal Swing Flap Angle",
-            device_class=TuyaDeviceClass.FAN_ANGLE,
+            name="Horizontal swing flap angle",
             entity_category=EntityCategory.CONFIG,
             icon="mdi:format-horizontal-align-center",
+            translation_key="fan_angle",
         ),
         SelectEntityDescription(
             key=DPCode.COUNTDOWN,
             name="Countdown",
-            device_class=TuyaDeviceClass.COUNTDOWN,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
         SelectEntityDescription(
             key=DPCode.COUNTDOWN_SET,
             name="Countdown",
-            device_class=TuyaDeviceClass.COUNTDOWN,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
     ),
     # Curtain
@@ -275,16 +417,16 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "cl": (
         SelectEntityDescription(
             key=DPCode.CONTROL_BACK_MODE,
-            name="Motor Mode",
-            device_class=TuyaDeviceClass.CURTAIN_MOTOR_MODE,
+            name="Motor mode",
             entity_category=EntityCategory.CONFIG,
             icon="mdi:swap-horizontal",
+            translation_key="curtain_motor_mode",
         ),
         SelectEntityDescription(
             key=DPCode.MODE,
             name="Mode",
-            device_class=TuyaDeviceClass.CURTAIN_MODE,
             entity_category=EntityCategory.CONFIG,
+            translation_key="curtain_mode",
         ),
     ),
     # Humidifier
@@ -292,38 +434,38 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
     "jsq": (
         SelectEntityDescription(
             key=DPCode.SPRAY_MODE,
-            name="Spray Mode",
-            device_class=TuyaDeviceClass.HUMIDIFIER_SPRAY_MODE,
+            name="Spray mode",
             entity_category=EntityCategory.CONFIG,
             icon="mdi:spray",
+            translation_key="humidifier_spray_mode",
         ),
         SelectEntityDescription(
             key=DPCode.LEVEL,
-            name="Spraying Level",
-            device_class=TuyaDeviceClass.HUMIDIFIER_LEVEL,
+            name="Spraying level",
             entity_category=EntityCategory.CONFIG,
             icon="mdi:spray",
+            translation_key="humidifier_level",
         ),
         SelectEntityDescription(
             key=DPCode.MOODLIGHTING,
             name="Moodlighting",
-            device_class=TuyaDeviceClass.HUMIDIFIER_MOODLIGHTING,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:lightbulb-multiple",
+            translation_key="humidifier_moodlighting",
         ),
         SelectEntityDescription(
             key=DPCode.COUNTDOWN,
             name="Countdown",
-            device_class=TuyaDeviceClass.COUNTDOWN,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
         SelectEntityDescription(
             key=DPCode.COUNTDOWN_SET,
             name="Countdown",
-            device_class=TuyaDeviceClass.COUNTDOWN,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
     ),
     # Air Purifier
@@ -332,175 +474,33 @@ SELECTS: dict[str, tuple[SelectEntityDescription, ...]] = {
         SelectEntityDescription(
             key=DPCode.COUNTDOWN,
             name="Countdown",
-            device_class=TuyaDeviceClass.COUNTDOWN,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
         SelectEntityDescription(
             key=DPCode.COUNTDOWN_SET,
             name="Countdown",
-            device_class=TuyaDeviceClass.COUNTDOWN,
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
     ),
-    # Smart Lock
-    # https://developer.tuya.com/en/docs/iot/f?id=Kb0o2vbzuzl81
-    "ms": (
+    # Dehumidifier
+    # https://developer.tuya.com/en/docs/iot/categorycs?id=Kaiuz1vcz4dha
+    "cs": (
         SelectEntityDescription(
-            key=DPCode.ALARM_VOLUME,
-            name="Alert Volume",
-            device_class=TuyaDeviceClass.LOCK_ALARM_VOLUME,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:volume-high",
-        ),
-        SelectEntityDescription(
-            key=DPCode.BASIC_NIGHTVISION,
-            name="Infrared (IR) Night Vision",
-            device_class=TuyaDeviceClass.LOCK_NIGHTVISION,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:weather-night",
-        ),
-        SelectEntityDescription(
-            key=DPCode.BEEP_VOLUME,
-            name="Local Voice Volume",
-            device_class=TuyaDeviceClass.LOCK_VOLUME,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:volume-high",
-        ),
-        SelectEntityDescription(
-            key=DPCode.DOOR_UNCLOSED_TRIGGER,
-            name="Trigger Time of Unclosed",
-            device_class=TuyaDeviceClass.LOCK_DOOR_UNCLOSED_TRIGGER,
+            key=DPCode.COUNTDOWN_SET,
+            name="Countdown",
             entity_category=EntityCategory.CONFIG,
             icon="mdi:timer-cog-outline",
+            translation_key="countdown",
         ),
         SelectEntityDescription(
-            key=DPCode.DOORBELL_SONG,
-            name="Doorbell Ringtone",
-            device_class=TuyaDeviceClass.LOCK_DOORBEL_SONG,
+            key=DPCode.DEHUMIDITY_SET_ENUM,
+            name="Target humidity",
             entity_category=EntityCategory.CONFIG,
-            icon="mdi:music-box-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.DOORBELL_VOLUME,
-            name="Doorbell Volume",
-            device_class=TuyaDeviceClass.LOCK_VOLUME,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:volume-high",
-        ),
-        SelectEntityDescription(
-            key=DPCode.KEY_TONE,
-            name="Volume on Keypress",
-            device_class=TuyaDeviceClass.LOCK_VOLUME,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:music-box-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.LOCK_MOTOR_DIRECTION,
-            name="Rotation Direction of Motor",
-            device_class=TuyaDeviceClass.LOCK_MOTOR_DIRECTION,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:swap-horizontal",
-        ),
-        SelectEntityDescription(
-            key=DPCode.LOW_POWER_THRESHOLD,
-            name="Low Battery Alert",
-            device_class=TuyaDeviceClass.LOCK_LOW_POWER,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:battery-alert-variant-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.MOTOR_TORQUE,
-            name="Torque Force of Motor",
-            device_class=TuyaDeviceClass.LOCK_MOTOR_TORQUE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:hexagon-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.OPEN_SPEED_STATE,
-            name="Unlocking Speed",
-            device_class=TuyaDeviceClass.LOCK_OPEN_SPEED,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:speedometer",
-        ),
-        SelectEntityDescription(
-            key=DPCode.PHOTO_MODE,
-            name="Photo Mode",
-            device_class=TuyaDeviceClass.LOCK_PHOTO_MODE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:image-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.RINGTONE,
-            name="Local Ringtone",
-            device_class=TuyaDeviceClass.LOCK_RINGTONE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:music-box-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.SOUND_MODE,
-            name="Sound Mode",
-            device_class=TuyaDeviceClass.LOCK_SOUND_MODE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:music-box-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.STAY_ALARM_MODE,
-            name="Loitering Alert Mode",
-            device_class=TuyaDeviceClass.LOCK_STAY_ALARM_MODE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:star-box-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.STAY_CAPTURE_MODE,
-            name="Loitering Photo Capture Mode",
-            device_class=TuyaDeviceClass.LOCK_STAY_CAPTURE_MODE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:image-multiple-outline",
-        ),
-        SelectEntityDescription(
-            key=DPCode.STAY_TRIGGER_DISTANCE,
-            name="Loitering Sensing Range",
-            device_class=TuyaDeviceClass.LOCK_STAY_TRIGGER_DISTANCE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:signal-distance-variant",
-        ),
-        SelectEntityDescription(
-            key=DPCode.UNLOCK_SWITCH,
-            name="Unlock Mode",
-            device_class=TuyaDeviceClass.LOCK_UNLOCK_SWITCH,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:shield-lock-open-outline",
-        ),
-        *LANGUAGE_SELECT,
-    ),
-    # Smart Finder
-    # Note: Not documented
-    "fdq": (
-        SelectEntityDescription(
-            key=DPCode.ALARM_VOLUME,
-            name="Volume",
-            device_class=TuyaDeviceClass.ALARM_VOLUME,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:volume-high",
-        ),
-        SelectEntityDescription(
-            key=DPCode.SOUND_MODE,
-            name="Sound",
-            device_class=TuyaDeviceClass.SOUND_MODE,
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:music-box-multiple-outline",
-        ),
-    ),
-    # Smart Star Projector
-    # Not documented
-    "xktyd": (
-        SelectEntityDescription(
-            key=DPCode.STAR_WORK_MODE,
-            name="Mode",
-            entity_category=EntityCategory.CONFIG,
-            icon="mdi:star-box-multiple-outline",
+            icon="mdi:water-percent",
         ),
     ),
 }
@@ -570,7 +570,7 @@ class TuyaSelectEntity(TuyaEntity, SelectEntity):
         self.entity_description = description
         self._attr_unique_id = f"{super().unique_id}{description.key}"
 
-        self._attr_opions: list[str] = []
+        self._attr_options: list[str] = []
         if enum_type := self.find_dpcode(
             description.key, dptype=DPType.ENUM, prefer_function=True
         ):
