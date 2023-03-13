@@ -1,13 +1,9 @@
 {
   "domain": "tuya",
   "name": "Tuya",
-  "documentation": "https://www.home-assistant.io/integrations/tuya",
-  "requirements": ["tuya-iot-py-sdk==0.6.6"],
-  "dependencies": ["ffmpeg"],
   "codeowners": ["@Tuya", "@zlinoliver", "@METISU", "@frenck", "@dougiteixeira"],
-  "version": "24012023.001",
   "config_flow": true,
-  "iot_class": "cloud_push",
+  "dependencies": ["ffmpeg"],
   "dhcp": [
     { "macaddress": "105A17*" },
     { "macaddress": "10D561*" },
@@ -21,6 +17,10 @@
     { "macaddress": "D4A651*" },
     { "macaddress": "D81F12*" }
   ],
+  "documentation": "https://www.home-assistant.io/integrations/tuya",
   "integration_type": "hub",
-  "loggers": ["tuya_iot"]
+  "iot_class": "cloud_push",
+  "loggers": ["tuya_iot"],
+  "requirements": ["tuya-iot-py-sdk==0.6.6"],
+  "version": "24012023.001"
 }
