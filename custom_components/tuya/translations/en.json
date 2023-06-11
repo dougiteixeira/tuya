@@ -1,411 +1,411 @@
 {
-    "config": {
-        "error": {
-            "invalid_auth": "Invalid authentication",
-            "login_error": "Login error ({code}): {msg}"
-        },
-        "step": {
-            "user": {
-                "data": {
-                    "access_id": "Tuya IoT Access ID",
-                    "access_secret": "Tuya IoT Access Secret",
-                    "country_code": "Country",
-                    "password": "Password",
-                    "username": "Account"
-                },
-                "description": "Enter your Tuya credentials"
-            }
+  "config": {
+    "step": {
+      "user": {
+        "description": "Enter your Tuya credentials",
+        "data": {
+          "country_code": "Country",
+          "access_id": "Tuya IoT Access ID",
+          "access_secret": "Tuya IoT Access Secret",
+          "username": "Account",
+          "password": "[%key:common::config_flow::data::password%]"
         }
+      }
     },
-    "entity": {
-        "select": {
-            "basic_anti_flicker": {
-                "state": {
-                    "0": "Disabled",
-                    "1": "50 Hz",
-                    "2": "60 Hz"
-                }
-            },
-            "basic_nightvision": {
-                "state": {
-                    "0": "Automatic",
-                    "1": "Off",
-                    "2": "On"
-                }
-            },
-            "countdown": {
-                "state": {
-                    "1h": "1 hour",
-                    "2h": "2 hours",
-                    "3h": "3 hours",
-                    "4h": "4 hours",
-                    "5h": "5 hours",
-                    "6h": "6 hours",
-                    "cancel": "Cancel"
-                }
-            },
-            "curtain_mode": {
-                "state": {
-                    "morning": "Morning",
-                    "night": "Night"
-                }
-            },
-            "curtain_motor_mode": {
-                "state": {
-                    "back": "Back",
-                    "forward": "Forward"
-                }
-            },
-            "decibel_sensitivity": {
-                "state": {
-                    "0": "Low sensitivity",
-                    "1": "High sensitivity"
-                }
-            },
-            "fan_angle": {
-                "state": {
-                    "30": "30\u00b0",
-                    "60": "60\u00b0",
-                    "90": "90\u00b0"
-                }
-            },
-            "fingerbot_mode": {
-                "state": {
-                    "click": "Push",
-                    "switch": "Switch"
-                }
-            },
-            "humidifier_level": {
-                "state": {
-                    "level_1": "Level 1",
-                    "level_10": "Level 10",
-                    "level_2": "Level 2",
-                    "level_3": "Level 3",
-                    "level_4": "Level 4",
-                    "level_5": "Level 5",
-                    "level_6": "Level 6",
-                    "level_7": "Level 7",
-                    "level_8": "Level 8",
-                    "level_9": "Level 9"
-                }
-            },
-            "humidifier_moodlighting": {
-                "state": {
-                    "1": "Mood 1",
-                    "2": "Mood 2",
-                    "3": "Mood 3",
-                    "4": "Mood 4",
-                    "5": "Mood 5"
-                }
-            },
-            "humidifier_spray_mode": {
-                "state": {
-                    "auto": "Auto",
-                    "health": "Health",
-                    "humidity": "Humidity",
-                    "sleep": "Sleep",
-                    "work": "Work"
-                }
-            },
-            "ipc_work_mode": {
-                "state": {
-                    "0": "Low power mode",
-                    "1": "Continuous working mode"
-                }
-            },
-            "language": {
-                "state": {
-                    "chinese_simplified": "Chinese Simplified",
-                    "chinese_traditional": "Chinese Traditional",
-                    "english": "English",
-                    "french": "French",
-                    "german": "German",
-                    "italian": "Italian",
-                    "japanese": "Japanese",
-                    "korean": "Korean",
-                    "latin": "Latin",
-                    "portuguese": "Portuguese",
-                    "russian": "Russian",
-                    "spanish": "Spanish"
-                }
-            },
-            "led_type": {
-                "state": {
-                    "halogen": "Halogen",
-                    "incandescent": "Incandescent",
-                    "led": "LED"
-                }
-            },
-            "light_mode": {
-                "state": {
-                    "none": "Off",
-                    "pos": "Indicate switch location",
-                    "relay": "Indicate switch on/off state"
-                }
-            },
-            "lock_alarm_volume": {
-                "state": {
-                    "high": "High",
-                    "low": "Low",
-                    "mute": "Mute",
-                    "normal": "Normal"
-                }
-            },
-            "lock_basic_nightvision": {
-                "state": {
-                    "0": "Level 1",
-                    "1": "Level 2",
-                    "2": "Level 3"
-                }
-            },
-            "lock_door_unclosed_trigger": {
-                "state": {
-                    "10s": "10 seconds",
-                    "15s": "15 seconds",
-                    "20s": "20 seconds",
-                    "25s": "25 seconds",
-                    "5s": "5 seconds"
-                }
-            },
-            "lock_doorbell_song": {
-                "state": {
-                    "ding_0": "Song 1",
-                    "ding_1": "Song 2",
-                    "ding_2": "Song 3",
-                    "ding_3": "Song 4",
-                    "ding_4": "Song 5",
-                    "ding_5": "Song 6",
-                    "ding_6": "Song 7",
-                    "ding_7": "Song 8",
-                    "ding_8": "Song 9",
-                    "ding_9": "Song 10"
-                }
-            },
-            "lock_doorbell_volume": {
-                "state": {
-                    "high": "High",
-                    "low": "Low",
-                    "mute": "Mute",
-                    "normal": "Normal"
-                }
-            },
-            "lock_low_power_threshold": {
-                "state": {
-                    "10_percent": "10%",
-                    "15_percent": "15%",
-                    "20_percent": "20%",
-                    "5_percent": "5%"
-                }
-            },
-            "lock_motor_direction": {
-                "state": {
-                    "anti_clockwise": "Anti Clockwise",
-                    "clockwise": "Clockwise"
-                }
-            },
-            "lock_motor_torque": {
-                "state": {
-                    "torque_high": "High",
-                    "torque_low": "Low",
-                    "torque_middle": "Middle"
-                }
-            },
-            "lock_open_speed_state": {
-                "state": {
-                    "high": "High",
-                    "low": "Low",
-                    "middle": "Middle"
-                }
-            },
-            "lock_photo_mode": {
-                "state": {
-                    "close": "Close",
-                    "power_save": "Power Save",
-                    "security": "Security",
-                    "standard": "Standard"
-                }
-            },
-            "lock_ringtone": {
-                "state": {
-                    "sound_1": "Sound 1",
-                    "sound_2": "Sound 2",
-                    "sound_3": "Sound 3",
-                    "sound_4": "Sound 4",
-                    "sound_5": "Sound 5",
-                    "sound_6": "Sound 6"
-                }
-            },
-            "lock_sound_mode": {
-                "state": {
-                    "ringtone_0": "Ringtone 1",
-                    "ringtone_1": "Ringtone 2",
-                    "ringtone_2": "Ringtone 3",
-                    "ringtone_3": "Ringtone 4",
-                    "ringtone_4": "Ringtone 5",
-                    "ringtone_5": "Ringtone 6"
-                }
-            },
-            "lock_stay_alarm_mode": {
-                "state": {
-                    "close": "Close",
-                    "custom": "Custom",
-                    "high": "High",
-                    "normal": "Normal"
-                }
-            },
-            "lock_stay_capture_mode": {
-                "state": {
-                    "mode_1": "Mode 1",
-                    "mode_2": "Mode 2"
-                }
-            },
-            "lock_stay_trigger_distance": {
-                "state": {
-                    "away_from": "Away From",
-                    "close_to": "Close To",
-                    "middle": "Middle"
-                }
-            },
-            "lock_unlock_switch": {
-                "state": {
-                    "card_face": "Card and Face",
-                    "combination": "Combination",
-                    "finger_card": "Finger and Card",
-                    "finger_face": "Finger and Face",
-                    "finger_password": "Finger and Password",
-                    "password_card": "Password and Card",
-                    "password_face": "Password and Face",
-                    "single_unlock": "Single Unlock"
-                }
-            },
-            "motion_sensitivity": {
-                "state": {
-                    "0": "Low sensitivity",
-                    "1": "Medium sensitivity",
-                    "2": "High sensitivity"
-                }
-            },
-            "record_mode": {
-                "state": {
-                    "1": "Record events only",
-                    "2": "Continuous recording"
-                }
-            },
-            "relay_status": {
-                "state": {
-                    "last": "Remember last state",
-                    "memory": "Remember last state",
-                    "off": "Off",
-                    "on": "On",
-                    "power_off": "Off",
-                    "power_on": "On"
-                }
-            },
-            "vacuum_cistern": {
-                "state": {
-                    "closed": "Closed",
-                    "high": "High",
-                    "low": "Low",
-                    "middle": "Middle"
-                }
-            },
-            "vacuum_collection": {
-                "state": {
-                    "large": "Large",
-                    "middle": "Middle",
-                    "small": "Small"
-                }
-            },
-            "vacuum_mode": {
-                "state": {
-                    "bow": "Bow",
-                    "chargego": "Return to dock",
-                    "left_bow": "Bow Left",
-                    "left_spiral": "Spiral Left",
-                    "mop": "Mop",
-                    "part": "Part",
-                    "partial_bow": "Bow Partially",
-                    "pick_zone": "Pick Zone",
-                    "point": "Point",
-                    "pose": "Pose",
-                    "random": "Random",
-                    "right_bow": "Bow Right",
-                    "right_spiral": "Spiral Right",
-                    "single": "Single",
-                    "smart": "Smart",
-                    "spiral": "Spiral",
-                    "standby": "Standby",
-                    "wall_follow": "Follow Wall",
-                    "zone": "Zone"
-                }
-            }
-        },
-        "sensor": {
-            "air_quality": {
-                "state": {
-                    "good": "Good",
-                    "great": "Great",
-                    "mild": "Mild",
-                    "severe": "Severe"
-                }
-            },
-            "battery_state": {
-                "state": {
-                    "high": "High",
-                    "low": "Low",
-                    "medium": "Medium",
-                    "poweroff": "Power off"
-                }
-            },
-            "lock_alarm": {
-                "state": {
-                    "defense": "Defense",
-                    "key_in": "Key In",
-                    "low_battery": "Low Battery",
-                    "power_off": "Power Off",
-                    "pry": "Prying",
-                    "shock": "Shock",
-                    "tongue_bad": "Bolt Stuck",
-                    "tongue_not_out": "Bolt Popup Failure",
-                    "too_hot": "High Temperature",
-                    "unclosed_time": "Unclosed Time",
-                    "wrong_card": "Wrong Card",
-                    "wrong_face": "Wrong Face",
-                    "wrong_finger": "Wrong Finger",
-                    "wrong_password": "Wrong Passwod"
-                }
-            },
-            "lock_antilock": {
-                "state": {
-                    "anti_locked": "Anti locked",
-                    "unlocked": "Unlocked"
-                }
-            },
-            "lock_insurance": {
-                "state": {
-                    "insured_lock": "Insured Lock",
-                    "uninsured_lock": "Uninsured Lock"
-                }
-            },
-            "lock_status": {
-                "state": {
-                    "closed": "Locked",
-                    "open": "Unlocked"
-                }
-            },
-            "status": {
-                "state": {
-                    "boiling_temp": "Boiling temperature",
-                    "cooling": "Cooling",
-                    "heating": "Heating",
-                    "heating_temp": "Heating temperature",
-                    "reserve_1": "Reserve 1",
-                    "reserve_2": "Reserve 2",
-                    "reserve_3": "Reserve 3",
-                    "standby": "Standby",
-                    "warm": "Heat preservation"
-                }
-            }
-        }
+    "error": {
+      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+      "login_error": "Login error ({code}): {msg}"
     }
+  },
+  "entity": {
+    "select": {
+      "basic_anti_flicker": {
+        "state": {
+          "0": "Disabled",
+          "1": "50 Hz",
+          "2": "60 Hz"
+        }
+      },
+      "basic_nightvision": {
+        "state": {
+          "0": "Automatic",
+          "1": "[%key:common::state::off%]",
+          "2": "[%key:common::state::on%]"
+        }
+      },
+      "decibel_sensitivity": {
+        "state": {
+          "0": "Low sensitivity",
+          "1": "High sensitivity"
+        }
+      },
+      "ipc_work_mode": {
+        "state": {
+          "0": "Low power mode",
+          "1": "Continuous working mode"
+        }
+      },
+      "led_type": {
+        "state": {
+          "halogen": "Halogen",
+          "incandescent": "Incandescent",
+          "led": "LED"
+        }
+      },
+      "light_mode": {
+        "state": {
+          "none": "[%key:common::state::off%]",
+          "pos": "Indicate switch location",
+          "relay": "Indicate switch on/off state"
+        }
+      },
+      "motion_sensitivity": {
+        "state": {
+          "0": "Low sensitivity",
+          "1": "Medium sensitivity",
+          "2": "High sensitivity"
+        }
+      },
+      "record_mode": {
+        "state": {
+          "1": "Record events only",
+          "2": "Continuous recording"
+        }
+      },
+      "relay_status": {
+        "state": {
+          "last": "Remember last state",
+          "memory": "Remember last state",
+          "off": "[%key:common::state::off%]",
+          "on": "[%key:common::state::on%]",
+          "power_off": "[%key:common::state::off%]",
+          "power_on": "[%key:common::state::on%]"
+        }
+      },
+      "fingerbot_mode": {
+        "state": {
+          "click": "Push",
+          "switch": "Switch"
+        }
+      },
+      "vacuum_cistern": {
+        "state": {
+          "low": "Low",
+          "middle": "Middle",
+          "high": "High",
+          "closed": "Closed"
+        }
+      },
+      "vacuum_collection": {
+        "state": {
+          "small": "Small",
+          "middle": "Middle",
+          "large": "Large"
+        }
+      },
+      "vacuum_mode": {
+        "state": {
+          "standby": "Standby",
+          "random": "Random",
+          "smart": "Smart",
+          "wall_follow": "Follow Wall",
+          "mop": "Mop",
+          "spiral": "Spiral",
+          "left_spiral": "Spiral Left",
+          "right_spiral": "Spiral Right",
+          "bow": "Bow",
+          "left_bow": "Bow Left",
+          "right_bow": "Bow Right",
+          "partial_bow": "Bow Partially",
+          "chargego": "Return to dock",
+          "single": "Single",
+          "zone": "Zone",
+          "pose": "Pose",
+          "point": "Point",
+          "part": "Part",
+          "pick_zone": "Pick Zone"
+        }
+      },
+      "fan_angle": {
+        "state": {
+          "30": "30°",
+          "60": "60°",
+          "90": "90°"
+        }
+      },
+      "curtain_mode": {
+        "state": {
+          "morning": "Morning",
+          "night": "Night"
+        }
+      },
+      "curtain_motor_mode": {
+        "state": {
+          "forward": "Forward",
+          "back": "Back"
+        }
+      },
+      "countdown": {
+        "state": {
+          "cancel": "Cancel",
+          "1h": "1 hour",
+          "2h": "2 hours",
+          "3h": "3 hours",
+          "4h": "4 hours",
+          "5h": "5 hours",
+          "6h": "6 hours"
+        }
+      },
+      "humidifier_spray_mode": {
+        "state": {
+          "auto": "Auto",
+          "health": "Health",
+          "sleep": "Sleep",
+          "humidity": "Humidity",
+          "work": "Work"
+        }
+      },
+      "humidifier_level": {
+        "state": {
+          "level_1": "Level 1",
+          "level_2": "Level 2",
+          "level_3": "Level 3",
+          "level_4": "Level 4",
+          "level_5": "Level 5",
+          "level_6": "Level 6",
+          "level_7": "Level 7",
+          "level_8": "Level 8",
+          "level_9": "Level 9",
+          "level_10": "Level 10"
+        }
+      },
+      "humidifier_moodlighting": {
+        "state": {
+          "1": "Mood 1",
+          "2": "Mood 2",
+          "3": "Mood 3",
+          "4": "Mood 4",
+          "5": "Mood 5"
+        }
+      },
+      "language": {
+        "state": {
+          "chinese_simplified": "Chinese Simplified",
+          "english": "English",
+          "japanese": "Japanese",
+          "german": "German",
+          "spanish": "Spanish",
+          "latin": "Latin",
+          "french": "French",
+          "russian": "Russian",
+          "italian": "Italian",
+          "chinese_traditional": "Chinese Traditional",
+          "korean": "Korean",
+          "portuguese": "Portuguese"
+        }
+      },
+      "lock_alarm_volume": {
+        "state": {
+          "mute": "Mute",
+          "low": "Low",
+          "normal": "Normal",
+          "high": "High"
+        }
+      },
+      "lock_basic_nightvision": {
+        "state": {
+          "0": "Level 1",
+          "1": "Level 2",
+          "2": "Level 3"
+        }
+      },
+      "lock_doorbell_volume": {
+        "state": {
+          "mute": "Mute",
+          "low": "Low",
+          "normal": "Normal",
+          "high": "High"
+        }
+      },
+      "lock_door_unclosed_trigger": {
+        "state": {
+          "5s": "5 seconds",
+          "10s": "10 seconds",
+          "15s": "15 seconds",
+          "20s": "20 seconds",
+          "25s": "25 seconds"
+        }
+      },
+      "lock_doorbell_song": {
+        "state": {
+          "ding_0": "Song 1",
+          "ding_1": "Song 2",
+          "ding_2": "Song 3",
+          "ding_3": "Song 4",
+          "ding_4": "Song 5",
+          "ding_5": "Song 6",
+          "ding_6": "Song 7",
+          "ding_7": "Song 8",
+          "ding_8": "Song 9",
+          "ding_9": "Song 10"
+        }
+      },
+      "lock_motor_direction": {
+        "state": {
+          "clockwise": "Clockwise",
+          "anti_clockwise": "Anti Clockwise"
+        }
+      },
+      "lock_low_power_threshold": {
+        "state": {
+          "5_percent": "5%",
+          "10_percent": "10%",
+          "15_percent": "15%",
+          "20_percent": "20%"
+        }
+      },
+      "lock_motor_torque": {
+        "state": {
+          "torque_low": "Low",
+          "torque_middle": "Middle",
+          "torque_high": "High"
+        }
+      },
+      "lock_open_speed_state": {
+        "state": {
+          "low": "Low",
+          "middle": "Middle",
+          "high": "High"
+        }
+      },
+      "lock_photo_mode": {
+        "state": {
+          "close": "Close",
+          "power_save": "Power Save",
+          "standard": "Standard",
+          "security": "Security"
+        }
+      },
+      "lock_ringtone": {
+        "state": {
+          "sound_1": "Sound 1",
+          "sound_2": "Sound 2",
+          "sound_3": "Sound 3",
+          "sound_4": "Sound 4",
+          "sound_5": "Sound 5",
+          "sound_6": "Sound 6"
+        }
+      },
+      "lock_sound_mode": {
+        "state": {
+          "ringtone_0": "Ringtone 1",
+          "ringtone_1": "Ringtone 2",
+          "ringtone_2": "Ringtone 3",
+          "ringtone_3": "Ringtone 4",
+          "ringtone_4": "Ringtone 5",
+          "ringtone_5": "Ringtone 6"
+        }
+      },
+      "lock_stay_alarm_mode": {
+        "state": {
+          "close": "Close",
+          "normal": "Normal",
+          "high": "High",
+          "custom": "Custom"
+        }
+      },
+      "lock_stay_capture_mode": {
+        "state": {
+          "mode_1": "Mode 1",
+          "mode_2": "Mode 2"
+        }
+      },
+      "lock_stay_trigger_distance": {
+        "state": {
+          "away_from": "Away From",
+          "close_to": "Close To",
+          "middle": "Middle"
+        }
+      },
+      "lock_unlock_switch": {
+        "state": {
+          "combination": "Combination",
+          "single_unlock": "Single Unlock",
+          "finger_password": "Finger and Password",
+          "finger_card": "Finger and Card",
+          "finger_face": "Finger and Face",
+          "password_card": "Password and Card",
+          "password_face": "Password and Face",
+          "card_face": "Card and Face"
+        }
+      }
+    },
+    "sensor": {
+      "status": {
+        "state": {
+          "boiling_temp": "Boiling temperature",
+          "cooling": "Cooling",
+          "heating_temp": "Heating temperature",
+          "heating": "Heating",
+          "reserve_1": "Reserve 1",
+          "reserve_2": "Reserve 2",
+          "reserve_3": "Reserve 3",
+          "standby": "Standby",
+          "warm": "Heat preservation"
+        }
+      },
+      "air_quality": {
+        "state": {
+          "great": "Great",
+          "mild": "Mild",
+          "good": "Good",
+          "severe": "Severe"
+        }
+      },
+      "battery_state": {
+        "state": {
+          "high": "High",
+          "medium": "Medium",
+          "low": "Low",
+          "poweroff": "Power off"
+        }
+      },
+      "lock_alarm": {
+        "state": {
+          "wrong_finger": "Wrong Finger",
+          "wrong_password": "Wrong Passwod",
+          "wrong_card": "Wrong Card",
+          "wrong_face": "Wrong Face",
+          "tongue_bad": "Bolt Stuck",
+          "too_hot": "High Temperature",
+          "tongue_not_out": "Bolt Popup Failure",
+          "pry": "Prying",
+          "key_in": "Key In",
+          "power_off": "Power Off",
+          "shock": "Shock",
+          "unclosed_time": "Unclosed Time",
+          "low_battery": "Low Battery",
+          "defense": "Defense"
+        }
+      },
+      "lock_status": {
+        "state": {
+          "open": "[%key:common::state::unlocked%]",
+          "closed": "[%key:common::state::locked%]"
+        }
+      },
+      "lock_antilock": {
+        "state": {
+          "unlocked": "Unlocked",
+          "anti_locked": "Anti locked"
+        }
+      },
+      "lock_insurance": {
+        "state": {
+          "uninsured_lock": "Uninsured Lock",
+          "insured_lock": "Insured Lock"
+        }
+      }
+    }
+  }
 }
