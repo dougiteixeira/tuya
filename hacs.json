@@ -20,5 +20,5 @@
   "vacuum"
   ],
   "iot_class": "cloud_push",
-  "homeassistant": "2022.3.0"
+  "homeassistant": "2022.6.0"
 }
