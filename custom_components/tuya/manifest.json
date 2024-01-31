@@ -44,5 +44,5 @@
   "iot_class": "cloud_push",
   "loggers": ["tuya_iot"],
   "requirements": ["tuya-iot-py-sdk==0.6.6"],
-  "version": "11062023.001"
+  "version": "2024.2-31jan2024-001"
 }
