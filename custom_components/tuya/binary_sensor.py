@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuya_iot import TuyaDevice, TuyaDeviceManager
+from tuya_sharing import CustomerDevice, Manager
 
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
@@ -21,7 +21,7 @@ from .base import TuyaEntity
 from .const import DOMAIN, TUYA_DISCOVERY_NEW, DPCode
 
 
-@dataclass
+@dataclass(frozen=True)
 class TuyaBinarySensorEntityDescription(BinarySensorEntityDescription):
     """Describes a Tuya binary sensor."""
 
@@ -51,68 +51,64 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
     "dgnbj": (
         TuyaBinarySensorEntityDescription(
             key=DPCode.GAS_SENSOR_STATE,
-            name="Gas",
             icon="mdi:gas-cylinder",
-            device_class=BinarySensorDeviceClass.SAFETY,
+            device_class=BinarySensorDeviceClass.GAS,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.CH4_SENSOR_STATE,
-            name="Methane",
+            translation_key="methane",
             device_class=BinarySensorDeviceClass.GAS,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.VOC_STATE,
-            name="Volatile organic compound",
+            translation_key="voc",
             device_class=BinarySensorDeviceClass.SAFETY,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.PM25_STATE,
-            name="Particulate matter 2.5 µm",
+            translation_key="pm25",
             device_class=BinarySensorDeviceClass.SAFETY,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.CO_STATE,
-            name="Carbon monoxide",
+            translation_key="carbon_monoxide",
             icon="mdi:molecule-co",
             device_class=BinarySensorDeviceClass.SAFETY,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.CO2_STATE,
+            translation_key="carbon_dioxide",
             icon="mdi:molecule-co2",
-            name="Carbon dioxide",
             device_class=BinarySensorDeviceClass.SAFETY,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.CH2O_STATE,
-            name="Formaldehyde",
+            translation_key="formaldehyde",
             device_class=BinarySensorDeviceClass.SAFETY,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.DOORCONTACT_STATE,
-            name="Door",
             device_class=BinarySensorDeviceClass.DOOR,
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.WATERSENSOR_STATE,
-            name="Water leak",
             device_class=BinarySensorDeviceClass.MOISTURE,
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.PRESSURE_STATE,
-            name="Pressure",
+            translation_key="pressure",
             on_value="alarm",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.SMOKE_SENSOR_STATE,
-            name="Smoke",
             icon="mdi:smoke-detector",
             device_class=BinarySensorDeviceClass.SMOKE,
             on_value="alarm",
@@ -149,7 +145,7 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
     "cwwsq": (
         TuyaBinarySensorEntityDescription(
             key=DPCode.FEED_STATE,
-            name="Feeding",
+            translation_key="feeding",
             icon="mdi:information",
             on_value="feeding",
         ),
@@ -215,48 +211,44 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
     "ms": (
         TuyaBinarySensorEntityDescription(
             key=DPCode.OPEN_INSIDE,
-            name="Unlock inside of door",
             icon="mdi:home-export-outline",
+            translation_key="lock_open_inside",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.OPEN_CLOSE,
-            name="Locking and unlocking event",
             icon="mdi:lock-pattern",
+            translation_key="lock_open_close",
         ),
         TuyaBinarySensorEntityDescription(
-            key=DPCode.DOOR_OPENED,
-            name="Door",
-            device_class=BinarySensorDeviceClass.DOOR,
+            key=DPCode.DOOR_OPENED, device_class=BinarySensorDeviceClass.DOOR
         ),
         TuyaBinarySensorEntityDescription(
-            key=DPCode.REVERSE_LOCK,
-            name="Double locking status",
+            key=DPCode.REVERSE_LOCK, translation_key="lock_reverse"
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.CHILD_LOCK,
-            name="Child lock",
             icon="mdi:account-lock",
             entity_category=EntityCategory.CONFIG,
+            translation_key="child_lock",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.DOORBELL,
-            name="Doorbell",
             device_class=BinarySensorDeviceClass.SOUND,
+            translation_key="lock_doorbell",
         ),
         TuyaBinarySensorEntityDescription(
-            key=DPCode.ANTI_LOCK_OUTSIDE,
-            name="Double locking by lifting up",
+            key=DPCode.ANTI_LOCK_OUTSIDE, translation_key="lock_anti_outside"
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.LOCK_MOTOR_STATE,
-            name="Status",
             device_class=BinarySensorDeviceClass.LOCK,
+            translation_key="lock_status",
         ),
         TuyaBinarySensorEntityDescription(
             key=DPCode.HIJACK,
-            name="Duress alert",
             icon="mdi:lock-alert-outline",
             device_class=BinarySensorDeviceClass.SAFETY,
+            translation_key="lock_duress_alert",
         ),
     ),
     # Luminance Sensor
@@ -264,7 +256,6 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
     "ldcg": (
         TuyaBinarySensorEntityDescription(
             key=DPCode.TEMPER_ALARM,
-            name="Tamper",
             device_class=BinarySensorDeviceClass.TAMPER,
             entity_category=EntityCategory.DIAGNOSTIC,
         ),
@@ -339,7 +330,6 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
     "wkf": (
         TuyaBinarySensorEntityDescription(
             key=DPCode.WINDOW_STATE,
-            name="Window",
             device_class=BinarySensorDeviceClass.WINDOW,
             on_value="opened",
         ),
@@ -367,7 +357,7 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
         TuyaBinarySensorEntityDescription(
             key=DPCode.SMOKE_SENSOR_STATE,
             device_class=BinarySensorDeviceClass.SMOKE,
-            on_value="1",
+            on_value={"1", "alarm"},
         ),
         TAMPER_BINARY_SENSOR,
     ),
@@ -377,21 +367,20 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
         TuyaBinarySensorEntityDescription(
             key=f"{DPCode.SHOCK_STATE}_vibration",
             dpcode=DPCode.SHOCK_STATE,
-            name="Vibration",
             device_class=BinarySensorDeviceClass.VIBRATION,
             on_value="vibration",
         ),
         TuyaBinarySensorEntityDescription(
             key=f"{DPCode.SHOCK_STATE}_drop",
             dpcode=DPCode.SHOCK_STATE,
-            name="Drop",
+            translation_key="drop",
             icon="mdi:icon=package-down",
             on_value="drop",
         ),
         TuyaBinarySensorEntityDescription(
             key=f"{DPCode.SHOCK_STATE}_tilt",
             dpcode=DPCode.SHOCK_STATE,
-            name="Tilt",
+            translation_key="tilt",
             icon="mdi:spirit-level",
             on_value="tilt",
         ),
@@ -422,20 +411,20 @@ async def async_setup_entry(
         """Discover and add a discovered Tuya binary sensor."""
         entities: list[TuyaBinarySensorEntity] = []
         for device_id in device_ids:
-            device = hass_data.device_manager.device_map[device_id]
+            device = hass_data.manager.device_map[device_id]
             if descriptions := BINARY_SENSORS.get(device.category):
                 for description in descriptions:
                     dpcode = description.dpcode or description.key
                     if dpcode in device.status:
                         entities.append(
                             TuyaBinarySensorEntity(
-                                device, hass_data.device_manager, description
+                                device, hass_data.manager, description
                             )
                         )
 
         async_add_entities(entities)
 
-    async_discover_device([*hass_data.device_manager.device_map])
+    async_discover_device([*hass_data.manager.device_map])
 
     entry.async_on_unload(
         async_dispatcher_connect(hass, TUYA_DISCOVERY_NEW, async_discover_device)
@@ -449,8 +438,8 @@ class TuyaBinarySensorEntity(TuyaEntity, BinarySensorEntity):
 
     def __init__(
         self,
-        device: TuyaDevice,
-        device_manager: TuyaDeviceManager,
+        device: CustomerDevice,
+        device_manager: Manager,
         description: TuyaBinarySensorEntityDescription,
     ) -> None:
         """Init Tuya binary sensor."""
