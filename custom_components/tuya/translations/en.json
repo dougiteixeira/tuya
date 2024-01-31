@@ -1,25 +1,258 @@
 {
   "config": {
     "step": {
-      "user": {
-        "description": "Enter your Tuya credentials",
+      "reauth_user_code": {
+        "description": "The Tuya integration now uses an improved login method. To reauthenticate with your Smart Life or Tuya Smart account, you need to enter your user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
         "data": {
-          "country_code": "Country",
-          "access_id": "Tuya IoT Access ID",
-          "access_secret": "Tuya IoT Access Secret",
-          "username": "Account",
-          "password": "[%key:common::config_flow::data::password%]"
+          "user_code": "User code"
         }
+      },
+      "user": {
+        "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
+        "data": {
+          "user_code": "User code"
+        }
+      },
+      "scan": {
+        "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login:\n\n {qrcode} \n\nContinue to the next step once you have completed this step in the app."
       }
     },
     "error": {
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-      "login_error": "Login error ({code}): {msg}"
+      "invalid_auth": "Invalid authentication",
+      "login_error": "Login error ({code}): {msg}",
+      "reauth_successful": "Re-authentication was successful"
     }
   },
   "entity": {
+    "binary_sensor": {
+      "methane": {
+        "name": "Methane"
+      },
+      "voc": {
+        "name": "VOCs"
+      },
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "carbon_monoxide": {
+        "name": "Carbon monoxide"
+      },
+      "carbon_dioxide": {
+        "name": "Carbon dioxide"
+      },
+      "child_lock": {
+        "name": "Child lock"
+      },
+      "formaldehyde": {
+        "name": "Formaldehyde"
+      },
+      "pressure": {
+        "name": "Pressure"
+      },
+      "feeding": {
+        "name": "Feeding"
+      },
+      "drop": {
+        "name": "Drop"
+      },
+      "tilt": {
+        "name": "Tilt"
+      },
+      "lock_doorbell": {
+        "name": "Doorbell"
+      },
+      "lock_duress_alert": {
+        "name": "Duress alert"
+      },
+      "lock_open_close": {
+        "name": "Locking and unlocking event"
+      },
+      "lock_open_inside": {
+        "name": "Unlock inside of door"
+      },
+      "lock_reverse": {
+        "name": "Double locking status"
+      },
+      "lock_status": {
+        "name": "Status"
+      },
+      "lock_anti_outside": {
+        "name": "Double locking by lifting up"
+      }
+    },
+    "button": {
+      "reset_duster_cloth": {
+        "name": "Reset duster cloth"
+      },
+      "reset_edge_brush": {
+        "name": "Reset edge brush"
+      },
+      "reset_filter": {
+        "name": "Reset filter"
+      },
+      "reset_map": {
+        "name": "Reset map"
+      },
+      "reset_roll_brush": {
+        "name": "Reset roll brush"
+      },
+      "snooze": {
+        "name": "Snooze"
+      }
+    },
+    "cover": {
+      "blind": {
+        "name": "Blind"
+      },
+      "curtain": {
+        "name": "Curtain"
+      },
+      "curtain_2": {
+        "name": "Curtain 2"
+      },
+      "curtain_3": {
+        "name": "Curtain 3"
+      },
+      "door": {
+        "name": "Door"
+      },
+      "door_2": {
+        "name": "Door 2"
+      },
+      "door_3": {
+        "name": "Door 3"
+      }
+    },
+    "light": {
+      "backlight": {
+        "name": "Backlight"
+      },
+      "light": {
+        "name": "Light"
+      },
+      "light_2": {
+        "name": "Light 2"
+      },
+      "light_3": {
+        "name": "Light 3"
+      },
+      "night_light": {
+        "name": "Night light"
+      }
+    },
+    "number": {
+      "temperature": {
+        "name": "Temperature"
+      },
+      "time": {
+        "name": "Time"
+      },
+      "temperature_after_boiling": {
+        "name": "Temperature after boiling"
+      },
+      "heat_preservation_time": {
+        "name": "Heat preservation time"
+      },
+      "feed": {
+        "name": "Feed"
+      },
+      "voice_times": {
+        "name": "Voice times"
+      },
+      "sensitivity": {
+        "name": "Sensitivity"
+      },
+      "near_detection": {
+        "name": "Near detection"
+      },
+      "far_detection": {
+        "name": "Far detection"
+      },
+      "water_level": {
+        "name": "Water level"
+      },
+      "powder": {
+        "name": "Powder"
+      },
+      "cook_temperature": {
+        "name": "Cook temperature"
+      },
+      "cook_time": {
+        "name": "Cook time"
+      },
+      "cloud_recipe": {
+        "name": "Cloud recipe"
+      },
+      "volume": {
+        "name": "Volume"
+      },
+      "minimum_brightness": {
+        "name": "Minimum brightness"
+      },
+      "maximum_brightness": {
+        "name": "Maximum brightness"
+      },
+      "minimum_brightness_2": {
+        "name": "Minimum brightness 2"
+      },
+      "maximum_brightness_2": {
+        "name": "Maximum brightness 2"
+      },
+      "minimum_brightness_3": {
+        "name": "Minimum brightness 3"
+      },
+      "maximum_brightness_3": {
+        "name": "Maximum brightness 3"
+      },
+      "move_down": {
+        "name": "Move down"
+      },
+      "move_up": {
+        "name": "Move up"
+      },
+      "down_delay": {
+        "name": "Down delay"
+      },
+      "lock_time_auto": {
+        "name": "Auto lock time"
+      },
+      "lock_stay_hold_time": {
+        "name": "Loitering hold time"
+      },
+      "lock_open_rate": {
+        "name": "Opening percentage"
+      },
+      "lock_alarm_time": {
+        "name": "Alert duration"
+      }
+    },
     "select": {
+      "volume": {
+        "name": "Volume"
+      },
+      "cups": {
+        "name": "Cups"
+      },
+      "concentration": {
+        "name": "Concentration"
+      },
+      "material": {
+        "name": "Material"
+      },
+      "mode": {
+        "name": "Mode"
+      },
+      "temperature_level": {
+        "name": "Temperature level"
+      },
+      "brightness": {
+        "name": "Brightness"
+      },
+      "target_humidity": {
+        "name": "Target humidity"
+      },
       "basic_anti_flicker": {
+        "name": "Anti-flicker",
         "state": {
           "0": "Disabled",
           "1": "50 Hz",
@@ -27,25 +260,45 @@
         }
       },
       "basic_nightvision": {
+        "name": "Night vision",
         "state": {
           "0": "Automatic",
-          "1": "[%key:common::state::off%]",
-          "2": "[%key:common::state::on%]"
+          "1": "Off",
+          "2": "On"
         }
       },
       "decibel_sensitivity": {
+        "name": "Sound detection sensitivity",
         "state": {
           "0": "Low sensitivity",
           "1": "High sensitivity"
         }
       },
       "ipc_work_mode": {
+        "name": "IPC mode",
         "state": {
           "0": "Low power mode",
           "1": "Continuous working mode"
         }
       },
       "led_type": {
+        "name": "Light source type",
+        "state": {
+          "halogen": "Halogen",
+          "incandescent": "Incandescent",
+          "led": "LED"
+        }
+      },
+      "led_type_2": {
+        "name": "Light 2 source type",
+        "state": {
+          "halogen": "Halogen",
+          "incandescent": "Incandescent",
+          "led": "LED"
+        }
+      },
+      "led_type_3": {
+        "name": "Light 3 source type",
         "state": {
           "halogen": "Halogen",
           "incandescent": "Incandescent",
@@ -53,13 +306,15 @@
         }
       },
       "light_mode": {
+        "name": "Indicator light mode",
         "state": {
-          "none": "[%key:common::state::off%]",
+          "none": "Off",
           "pos": "Indicate switch location",
           "relay": "Indicate switch on/off state"
         }
       },
       "motion_sensitivity": {
+        "name": "Motion detection sensitivity",
         "state": {
           "0": "Low sensitivity",
           "1": "Medium sensitivity",
@@ -67,28 +322,32 @@
         }
       },
       "record_mode": {
+        "name": "Record mode",
         "state": {
           "1": "Record events only",
           "2": "Continuous recording"
         }
       },
       "relay_status": {
+        "name": "Power on behavior",
         "state": {
           "last": "Remember last state",
           "memory": "Remember last state",
-          "off": "[%key:common::state::off%]",
-          "on": "[%key:common::state::on%]",
-          "power_off": "[%key:common::state::off%]",
-          "power_on": "[%key:common::state::on%]"
+          "off": "Off",
+          "on": "On",
+          "power_off": "Off",
+          "power_on": "On"
         }
       },
       "fingerbot_mode": {
+        "name": "Mode",
         "state": {
           "click": "Push",
           "switch": "Switch"
         }
       },
       "vacuum_cistern": {
+        "name": "Water tank adjustment",
         "state": {
           "low": "Low",
           "middle": "Middle",
@@ -97,6 +356,7 @@
         }
       },
       "vacuum_collection": {
+        "name": "Dust collection mode",
         "state": {
           "small": "Small",
           "middle": "Middle",
@@ -104,29 +364,39 @@
         }
       },
       "vacuum_mode": {
+        "name": "Mode",
         "state": {
           "standby": "Standby",
           "random": "Random",
           "smart": "Smart",
-          "wall_follow": "Follow Wall",
+          "wall_follow": "Follow wall",
           "mop": "Mop",
           "spiral": "Spiral",
-          "left_spiral": "Spiral Left",
-          "right_spiral": "Spiral Right",
+          "left_spiral": "Spiral left",
+          "right_spiral": "Spiral right",
           "bow": "Bow",
-          "left_bow": "Bow Left",
-          "right_bow": "Bow Right",
-          "partial_bow": "Bow Partially",
+          "left_bow": "Bow left",
+          "right_bow": "Bow right",
+          "partial_bow": "Bow partially",
           "chargego": "Return to dock",
           "single": "Single",
           "zone": "Zone",
           "pose": "Pose",
           "point": "Point",
           "part": "Part",
-          "pick_zone": "Pick Zone"
+          "pick_zone": "Pick zone"
         }
       },
-      "fan_angle": {
+      "vertical_fan_angle": {
+        "name": "Vertical swing flap angle",
+        "state": {
+          "30": "30°",
+          "60": "60°",
+          "90": "90°"
+        }
+      },
+      "horizontal_fan_angle": {
+        "name": "Horizontal swing flap angle",
         "state": {
           "30": "30°",
           "60": "60°",
@@ -134,18 +404,21 @@
         }
       },
       "curtain_mode": {
+        "name": "Mode",
         "state": {
           "morning": "Morning",
           "night": "Night"
         }
       },
       "curtain_motor_mode": {
+        "name": "Motor mode",
         "state": {
           "forward": "Forward",
           "back": "Back"
         }
       },
       "countdown": {
+        "name": "Countdown",
         "state": {
           "cancel": "Cancel",
           "1h": "1 hour",
@@ -157,6 +430,7 @@
         }
       },
       "humidifier_spray_mode": {
+        "name": "Spray mode",
         "state": {
           "auto": "Auto",
           "health": "Health",
@@ -166,6 +440,7 @@
         }
       },
       "humidifier_level": {
+        "name": "Spraying level",
         "state": {
           "level_1": "Level 1",
           "level_2": "Level 2",
@@ -180,6 +455,7 @@
         }
       },
       "humidifier_moodlighting": {
+        "name": "Moodlighting",
         "state": {
           "1": "Mood 1",
           "2": "Mood 2",
@@ -189,6 +465,7 @@
         }
       },
       "language": {
+        "name": "Language",
         "state": {
           "chinese_simplified": "Chinese Simplified",
           "english": "English",
@@ -205,6 +482,7 @@
         }
       },
       "lock_alarm_volume": {
+        "name": "Alert volume",
         "state": {
           "mute": "Mute",
           "low": "Low",
@@ -213,13 +491,33 @@
         }
       },
       "lock_basic_nightvision": {
+        "name": "Infrared (IR) night vision",
         "state": {
           "0": "Level 1",
           "1": "Level 2",
           "2": "Level 3"
         }
       },
+      "lock_voice_volume": {
+        "name": "Local voice volume",
+        "state": {
+          "mute": "Mute",
+          "low": "Low",
+          "normal": "Normal",
+          "high": "High"
+        }
+      },
       "lock_doorbell_volume": {
+        "name": "Doorbell volume",
+        "state": {
+          "mute": "Mute",
+          "low": "Low",
+          "normal": "Normal",
+          "high": "High"
+        }
+      },
+      "lock_keypress_volume": {
+        "name": "Volume on keypress",
         "state": {
           "mute": "Mute",
           "low": "Low",
@@ -228,6 +526,7 @@
         }
       },
       "lock_door_unclosed_trigger": {
+        "name": "Trigger time of unclosed",
         "state": {
           "5s": "5 seconds",
           "10s": "10 seconds",
@@ -237,6 +536,7 @@
         }
       },
       "lock_doorbell_song": {
+        "name": "Doorbell ringtone",
         "state": {
           "ding_0": "Song 1",
           "ding_1": "Song 2",
@@ -251,12 +551,14 @@
         }
       },
       "lock_motor_direction": {
+        "name": "Rotation direction of motor",
         "state": {
           "clockwise": "Clockwise",
           "anti_clockwise": "Anti Clockwise"
         }
       },
       "lock_low_power_threshold": {
+        "name": "Low battery alert",
         "state": {
           "5_percent": "5%",
           "10_percent": "10%",
@@ -265,6 +567,7 @@
         }
       },
       "lock_motor_torque": {
+        "name": "Torque force of motor",
         "state": {
           "torque_low": "Low",
           "torque_middle": "Middle",
@@ -272,6 +575,7 @@
         }
       },
       "lock_open_speed_state": {
+        "name": "Unlocking speed",
         "state": {
           "low": "Low",
           "middle": "Middle",
@@ -279,6 +583,7 @@
         }
       },
       "lock_photo_mode": {
+        "name": "Photo mode",
         "state": {
           "close": "Close",
           "power_save": "Power Save",
@@ -287,6 +592,7 @@
         }
       },
       "lock_ringtone": {
+        "name": "Local ringtone",
         "state": {
           "sound_1": "Sound 1",
           "sound_2": "Sound 2",
@@ -297,6 +603,7 @@
         }
       },
       "lock_sound_mode": {
+        "name": "Sound mode",
         "state": {
           "ringtone_0": "Ringtone 1",
           "ringtone_1": "Ringtone 2",
@@ -307,6 +614,7 @@
         }
       },
       "lock_stay_alarm_mode": {
+        "name": "Loitering alert mode",
         "state": {
           "close": "Close",
           "normal": "Normal",
@@ -315,12 +623,14 @@
         }
       },
       "lock_stay_capture_mode": {
+        "name": "Loitering photo capture mode",
         "state": {
           "mode_1": "Mode 1",
           "mode_2": "Mode 2"
         }
       },
       "lock_stay_trigger_distance": {
+        "name": "Loitering sensing range",
         "state": {
           "away_from": "Away From",
           "close_to": "Close To",
@@ -328,6 +638,7 @@
         }
       },
       "lock_unlock_switch": {
+        "name": "Unlock mode",
         "state": {
           "combination": "Combination",
           "single_unlock": "Single Unlock",
@@ -338,31 +649,63 @@
           "password_face": "Password and Face",
           "card_face": "Card and Face"
         }
+      },
+      "weather_delay": {
+        "name": "Weather delay",
+        "state": {
+          "cancel": "Cancel",
+          "24h": "24h",
+          "48h": "48h",
+          "72h": "72h",
+          "96h": "96h",
+          "120h": "120h",
+          "144h": "144h",
+          "168h": "168h"
+        }
       }
     },
     "sensor": {
-      "status": {
-        "state": {
-          "boiling_temp": "Boiling temperature",
-          "cooling": "Cooling",
-          "heating_temp": "Heating temperature",
-          "heating": "Heating",
-          "reserve_1": "Reserve 1",
-          "reserve_2": "Reserve 2",
-          "reserve_3": "Reserve 3",
-          "standby": "Standby",
-          "warm": "Heat preservation"
-        }
+      "battery": {
+        "name": "Battery"
       },
-      "air_quality": {
-        "state": {
-          "great": "Great",
-          "mild": "Mild",
-          "good": "Good",
-          "severe": "Severe"
-        }
+      "voc": {
+        "name": "VOC"
+      },
+      "carbon_monoxide": {
+        "name": "Carbon monoxide"
+      },
+      "carbon_dioxide": {
+        "name": "Carbon dioxide"
+      },
+      "illuminance": {
+        "name": "Illuminance"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "pm1": {
+        "name": "PM1"
+      },
+      "pm10": {
+        "name": "PM10"
+      },
+      "current": {
+        "name": "Current"
+      },
+      "power": {
+        "name": "Power"
+      },
+      "voltage": {
+        "name": "Voltage"
       },
       "battery_state": {
+        "name": "Battery state",
         "state": {
           "high": "High",
           "medium": "Medium",
@@ -370,7 +713,11 @@
           "poweroff": "Power off"
         }
       },
+      "gas": {
+        "name": "Gas"
+      },
       "lock_alarm": {
+        "name": "Last alert",
         "state": {
           "wrong_finger": "Wrong Finger",
           "wrong_password": "Wrong Passwod",
@@ -389,22 +736,461 @@
         }
       },
       "lock_status": {
+        "name": "Door",
         "state": {
-          "open": "[%key:common::state::unlocked%]",
-          "closed": "[%key:common::state::locked%]"
+          "open": "Unlocked",
+          "closed": "Locked"
         }
       },
       "lock_antilock": {
+        "name": "Double locking status",
         "state": {
           "unlocked": "Unlocked",
           "anti_locked": "Anti locked"
         }
       },
       "lock_insurance": {
+        "name": "Latching status",
         "state": {
           "uninsured_lock": "Uninsured Lock",
           "insured_lock": "Insured Lock"
         }
+      },
+      "lock_last_fingerprint": {
+        "name": "Last ID fingerprint"
+      },
+      "lock_last_password": {
+        "name": "Last ID password"
+      },
+      "lock_last_temporary_password": {
+        "name": "Last ID temporary password"
+      },
+      "lock_last_dynamic_password": {
+        "name": "Last ID dynamic password"
+      },
+      "lock_last_card": {
+        "name": "Last ID card"
+      },
+      "lock_last_identity_card": {
+        "name": "Last ID identity card"
+      },
+      "lock_last_face_recognition": {
+        "name": "Last ID face recognition"
+      },
+      "lock_last_mechanical_key": {
+        "name": "Last ID mechanical key"
+      },
+      "lock_last_iris": {
+        "name": "Last ID iris"
+      },
+      "lock_last_palm_print": {
+        "name": "Last ID palm print"
+      },
+      "lock_last_finger_vein": {
+        "name": "Last ID finger vein"
+      },
+      "lock_last_bluetooth": {
+        "name": "Last ID bluetoot"
+      },
+      "lock_last_remote": {
+        "name": "Last ID remote"
+      },
+      "lock_last_mobile_phone": {
+        "name": "Last ID mobile phone"
+      },
+      "lock_last_voice": {
+        "name": "Last ID voice (remote)"
+      },
+      "lock_last_app": {
+        "name": "Last ID app (remote)"
+      },
+      "lock_last_access_control_system": {
+        "name": "Last ID access control system"
+      },
+      "lock_last_emergency_password": {
+        "name": "Last ID emergency password"
+      },
+      "lock_last_administrator": {
+        "name": "Last ID administrator"
+      },
+      "lock_last_housekeeper": {
+        "name": "Last ID housekeeper"
+      },
+      "formaldehyde": {
+        "name": "Formaldehyde"
+      },
+      "luminosity": {
+        "name": "Luminosity"
+      },
+      "smoke_amount": {
+        "name": "Smoke amount"
+      },
+      "current_temperature": {
+        "name": "Current temperature"
+      },
+      "status": {
+        "name": "Status"
+      },
+      "last_amount": {
+        "name": "Last amount"
+      },
+      "remaining_time": {
+        "name": "Remaining time"
+      },
+      "methane": {
+        "name": "Methane"
+      },
+      "total_energy": {
+        "name": "Total energy"
+      },
+      "phase_a_current": {
+        "name": "Phase A current"
+      },
+      "phase_a_power": {
+        "name": "Phase A power"
+      },
+      "phase_a_voltage": {
+        "name": "Phase A voltage"
+      },
+      "phase_b_current": {
+        "name": "Phase B current"
+      },
+      "phase_b_power": {
+        "name": "Phase B power"
+      },
+      "phase_b_voltage": {
+        "name": "Phase B voltage"
+      },
+      "phase_c_current": {
+        "name": "Phase C current"
+      },
+      "phase_c_power": {
+        "name": "Phase C power"
+      },
+      "phase_c_voltage": {
+        "name": "Phase C voltage"
+      },
+      "cleaning_area": {
+        "name": "Cleaning area"
+      },
+      "cleaning_time": {
+        "name": "Cleaning time"
+      },
+      "total_cleaning_area": {
+        "name": "Total cleaning area"
+      },
+      "total_cleaning_time": {
+        "name": "Total cleaning time"
+      },
+      "total_cleaning_times": {
+        "name": "Total cleaning times"
+      },
+      "duster_cloth_life": {
+        "name": "Duster cloth lifetime"
+      },
+      "side_brush_life": {
+        "name": "Side brush lifetime"
+      },
+      "filter_life": {
+        "name": "Filter lifetime"
+      },
+      "rolling_brush_life": {
+        "name": "Rolling brush lifetime"
+      },
+      "last_operation_duration": {
+        "name": "Last operation duration"
+      },
+      "water_level": {
+        "name": "Water level"
+      },
+      "total_watering_time": {
+        "name": "Total watering time"
+      },
+      "filter_utilization": {
+        "name": "Filter utilization"
+      },
+      "total_volatile_organic_compound": {
+        "name": "Total volatile organic compound"
+      },
+      "concentration_carbon_dioxide": {
+        "name": "Concentration of carbon dioxide"
+      },
+      "total_operating_time": {
+        "name": "Total operating time"
+      },
+      "total_absorption_particles": {
+        "name": "Total absorption of particles"
+      },
+      "sous_vide_status": {
+        "name": "Status",
+        "state": {
+          "boiling_temp": "Boiling temperature",
+          "cooling": "Cooling",
+          "heating_temp": "Heating temperature",
+          "heating": "Heating",
+          "reserve_1": "Reserve 1",
+          "reserve_2": "Reserve 2",
+          "reserve_3": "Reserve 3",
+          "standby": "Standby",
+          "warm": "Heat preservation"
+        }
+      },
+      "air_quality": {
+        "name": "Air quality",
+        "state": {
+          "great": "Great",
+          "mild": "Mild",
+          "good": "Good",
+          "severe": "Severe"
+        }
+      }
+    },
+    "switch": {
+      "start": {
+        "name": "Start"
+      },
+      "heat_preservation": {
+        "name": "Heat preservation"
+      },
+      "disinfection": {
+        "name": "Disinfection"
+      },
+      "water": {
+        "name": "Water"
+      },
+      "slow_feed": {
+        "name": "Slow feed"
+      },
+      "filter_reset": {
+        "name": "Filter reset"
+      },
+      "water_pump_reset": {
+        "name": "Water pump reset"
+      },
+      "power": {
+        "name": "Power"
+      },
+      "reset_of_water_usage_days": {
+        "name": "Reset of water usage days"
+      },
+      "uv_sterilization": {
+        "name": "UV sterilization"
+      },
+      "plug": {
+        "name": "Plug"
+      },
+      "child_lock": {
+        "name": "Child lock"
+      },
+      "switch": {
+        "name": "Switch"
+      },
+      "socket": {
+        "name": "Socket"
+      },
+      "radio": {
+        "name": "Radio"
+      },
+      "alarm_1": {
+        "name": "Alarm 1"
+      },
+      "alarm_2": {
+        "name": "Alarm 2"
+      },
+      "alarm_3": {
+        "name": "Alarm 3"
+      },
+      "alarm_4": {
+        "name": "Alarm 4"
+      },
+      "sleep_aid": {
+        "name": "Sleep aid"
+      },
+      "switch_1": {
+        "name": "Switch 1"
+      },
+      "switch_2": {
+        "name": "Switch 2"
+      },
+      "switch_3": {
+        "name": "Switch 3"
+      },
+      "switch_4": {
+        "name": "Switch 4"
+      },
+      "switch_5": {
+        "name": "Switch 5"
+      },
+      "switch_6": {
+        "name": "Switch 6"
+      },
+      "switch_7": {
+        "name": "Switch 7"
+      },
+      "switch_8": {
+        "name": "Switch 8"
+      },
+      "usb_1": {
+        "name": "USB 1"
+      },
+      "usb_2": {
+        "name": "USB 2"
+      },
+      "usb_3": {
+        "name": "USB 3"
+      },
+      "usb_4": {
+        "name": "USB 4"
+      },
+      "usb_5": {
+        "name": "USB 5"
+      },
+      "usb_6": {
+        "name": "USB 6"
+      },
+      "socket_1": {
+        "name": "Socket 1"
+      },
+      "socket_2": {
+        "name": "Socket 2"
+      },
+      "socket_3": {
+        "name": "Socket 3"
+      },
+      "socket_4": {
+        "name": "Socket 4"
+      },
+      "socket_5": {
+        "name": "Socket 5"
+      },
+      "socket_6": {
+        "name": "Socket 6"
+      },
+      "ionizer": {
+        "name": "Ionizer"
+      },
+      "filter_cartridge_reset": {
+        "name": "Filter cartridge reset"
+      },
+      "humidification": {
+        "name": "Humidification"
+      },
+      "do_not_disturb": {
+        "name": "Do not disturb"
+      },
+      "mute_voice": {
+        "name": "Mute voice"
+      },
+      "mute": {
+        "name": "Mute"
+      },
+      "battery_lock": {
+        "name": "Battery lock"
+      },
+      "cry_detection": {
+        "name": "Cry detection"
+      },
+      "sound_detection": {
+        "name": "Sound detection"
+      },
+      "video_recording": {
+        "name": "Video recording"
+      },
+      "motion_recording": {
+        "name": "Motion recording"
+      },
+      "privacy_mode": {
+        "name": "Privacy mode"
+      },
+      "flip": {
+        "name": "Flip"
+      },
+      "time_watermark": {
+        "name": "Time watermark"
+      },
+      "wide_dynamic_range": {
+        "name": "Wide dynamic range"
+      },
+      "motion_tracking": {
+        "name": "Motion tracking"
+      },
+      "motion_alarm": {
+        "name": "Motion alarm"
+      },
+      "energy_saving": {
+        "name": "Energy saving"
+      },
+      "open_window_detection": {
+        "name": "Open window detection"
+      },
+      "spray": {
+        "name": "Spray"
+      },
+      "voice": {
+        "name": "Voice"
+      },
+      "anion": {
+        "name": "Anion"
+      },
+      "oxygen_bar": {
+        "name": "Oxygen bar"
+      },
+      "natural_wind": {
+        "name": "Natural wind"
+      },
+      "sound": {
+        "name": "Sound"
+      },
+      "reverse": {
+        "name": "Reverse"
+      },
+      "sleep": {
+        "name": "Sleep"
+      },
+      "sterilization": {
+        "name": "Sterilization"
+      },
+      "lock_auto": {
+        "name": "Auto-lock"
+      },
+      "lock_arming": {
+        "name": "Arming"
+      },
+      "lock_hibernation": {
+        "name": "Hibernation"
+      },
+      "lock_verification_free": {
+        "name": "Verification-free"
+      },
+      "lock_double_locking_limit": {
+        "name": "Double locking limit"
+      },
+      "disconnection_alert": {
+        "name": "Disconnection alert"
+      },
+      "lock_function": {
+        "name": "Lock function"
+      },
+      "lock_mandatory_double": {
+        "name": "Mandatory double locking"
+      },
+      "lock_phone_call": {
+        "name": "Phone call"
+      },
+      "lock_normally_open": {
+        "name": "Normally open"
+      },
+      "lock_special_control": {
+        "name": "Special control"
+      },
+      "lock_wakeup": {
+        "name": "Wake-up status"
+      },
+      "lock_password_free_feedback": {
+        "name": "Password-free unlocking feedback"
+      },
+      "lock_unlock_secret_key": {
+        "name": "Unlock with special secret key"
       }
     }
   }
