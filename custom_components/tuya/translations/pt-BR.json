@@ -2,7 +2,9 @@
     "config": {
         "error": {
             "invalid_auth": "Autentica\u00e7\u00e3o inv\u00e1lida",
-            "login_error": "Erro de login ({code}): {msg}",
+            "login_error": "Erro de login ({code}): {msg}"
+        },
+        "abort": {
             "reauth_successful": "A reautenticação foi bem-sucedida"
         },
         "step": {
@@ -19,7 +21,7 @@
                 "description": "Insira seu código de usuário do Smart Life ou Tuya Smart.\n\nVocê pode encontrar esse código no aplicativo Smart Life ou no aplicativo Tuya Smart em **Configurações** > tela **Conta e segurança** e insira o código mostrado na tela Campo **Código do usuário**. O código do usuário diferencia maiúsculas de minúsculas. Certifique-se de inseri-lo exatamente como mostrado no aplicativo."
             },
             "scan": {
-                "description": "Use o aplicativo Smart Life ou Tuya Smart para escanear o seguinte código QR para concluir o login:\n\n {qrcode} \n\nContinue para a próxima etapa depois de concluir esta etapa no aplicativo."
+                "description": "Use o aplicativo Smart Life ou Tuya Smart para escanear o seguinte código QR para concluir o login.\n\nContinue para a próxima etapa depois de concluir esta etapa no aplicativo."
             }
         }
     },
